@@ -88,7 +88,9 @@
 		if(xm.loginUtil.isLogin()){
 			callback();
 		}else{
-			window.xm.login_box.open();
+			window.xm.login_box.open(function() {
+				callback();
+			});
 		}
 	};
 	
