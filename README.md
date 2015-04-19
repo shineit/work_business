@@ -18,6 +18,7 @@
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
 [Import code](https://import.github.com/huangxiangsai/work_business/import)
+<<<<<<< HEAD
 
 测试sublime git 插件使用
 
