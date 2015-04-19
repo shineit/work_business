@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>发任务</title>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/v1.css" />
+		<link rel="stylesheet" href="../css/form/jquery.input.css" />
+		<link rel="stylesheet" href="../css/form/jquery.selector.css" />
+	    
+
+	    <script>
+	    	
+	        
+	    </script>
+	</head>
+	<body>
+		<div class="page">
+			<!--s: 头部 -->
+			<!--e: 头部 -->
+		
+			<!--s: 内容 -->
+			<div class="container">
+				<div class="main">
+					<!--s: 步骤 -->
+					<div class="step step2 wrapper">
+						<div class="wrapper">
+							<div class="step-line">
+								<div class="step-item on">
+									<span class="num">1</span>
+									<p class="txt wrapper">授权作品有声改编权</p>
+								</div>
+								<div class="step-item">
+									<span class="num">2</span>
+									<p class="txt wrapper">喜马拉雅平台审核并发布任务</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--e: 步骤 -->
+					<div class="bg-f mgt-40">
+						<div class="wrapper1">		
+							<!--s: 第1步 -->
+							<form class="c02 " id="taskForm" action="">
+								<!--s: 作品信息 -->
+								<div>
+									<!--s: tab -->
+									<div class="tab tab-h tab-1 cl">
+										<div class="item on">
+											<a>作品信息</a>
+										</div>
+									</div>
+									<!--e: tab -->	
+									<div class="form">
+										<!--s: 原始样式 -->
+										<div class="row">
+											<div class="cell-1">作品名称<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input type="text" class="" name="workName" id="workName"/>
+											</div>
+										</div>
+										<!--e: 原始样式 -->
+										
+										<!--s: 错误样式 -->
+										<div class="row error">
+											<div class="cell-1">作者名<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input class="" type="text" id="authorName" name="authorName"/>
+												
+											</div>
+										</div>
+										<!--e: 错误样式 -->
+										<div class="row">
+											<div class="cell-1">作者笔名<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input type="text" class="" id="authorAlisa" name="authorAlisa" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="cell-1">分类<span class="c04">*</span></div>
+											<div class="cell-2">
+												<!--s: 下拉框 -->
+										        <div class="xm-selector">
+										            <span class="xm-selector-title">一级分类</span>
+										            <a class="xm-selector-arrow"></a>
+
+										            <ul class="xm-selector-list">
+										                <li class="xm-selector-item selected">一级分类</li>
+										                <li class="xm-selector-item">2</li>
+										            </ul>
+										            <select class="xm-selector-data" id="categoryIdTemp" name="categoryIdTemp" >
+										                <option value="-1">一级分类</option>
+										                <option value="1">1</option>
+										                <option value="2">2</option>
+										                <option value="3">3</option>
+										                <option value="4">4</option>
+										            </select>
+
+										            <input type="text" name="categoryId" id="categoryId" value="" style="  position: absolute;left: -9999px;opacity: 0;">
+
+										        </div>
+										        <span class="tip mgl-10 categoryIdTip"></span>
+												<!--s: 下拉框 -->
+											</div>
+										</div>
+										<!--s: 错误样式 -->
+										<div class="row">
+											<div class="cell-1">字数<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input class="valid" type="text" id="totalWordCount" name="totalWordCount"  /> 字
+												<span class="tip mgl-10 totalWordCountTip"></span>
+											</div>
+										</div>
+										<!--e: 错误样式 -->
+										<div class="row">
+											<div class="cell-1">作品简介<span class="c04">*</span></div>
+											<div class="cell-2">
+												<textarea placeholder="500字以内" class="introduction" id="workBrief" name="workBrief"></textarea>
+												<span class="tip mgl-10 workBrief_tip"></span>
+												<p class="tip tip-1 introduction-text">您还能输入<span>500</span>字</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--e: 作品信息 -->
+								
+								<!--s: 个人信息 -->
+								<div>
+									<!--s: tab -->
+									<div class="tab tab-h tab-1 cl">
+										<div class="item on">
+											<a>个人信息</a>
+										</div>
+									</div>
+									<!--e: tab -->	
+									<div class="form">
+										<!--s: 原始样式 -->
+										<div class="row">
+											<div class="cell-1">联系人<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input type="text" id="contactName" name="contactName"/>
+											</div>
+										</div>
+										<!--e: 原始样式 -->
+										
+										<div class="row error">
+											<div class="cell-1">联系电话<span class="c04">*</span></div>
+											<div class="cell-2">
+												<input type="text" id="contactPhoneNo" name="contactPhoneNo" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--e: 个人信息 -->
+								
+								<!--s: 演播要求 -->
+								<div>
+									<!--s: tab -->
+									<div class="tab tab-h tab-1 cl">
+										<div class="item on">
+											<a>演播要求</a>
+										</div>
+									</div>
+									<!--e: tab -->	
+									<div class="form">
+										<!--s: 原始样式 -->
+										<div class="row">
+											<div class="cell-1">演绎方式<span class="c04">*</span></div>
+											<div class="cell-2">
+												<label class="xm-radio ">
+										            <input type="radio"  name="studioStyleId">单人
+										        </label>
+												<label class="xm-radio">
+										            <input type="radio" name="studioStyleId">单人男声
+										        </label>
+												<label class="xm-radio">
+										            <input type="radio" name="studioStyleId">单人女声
+										        </label>
+												<label class="xm-radio">
+										            <input type="radio" name="studioStyleId">多人小说剧
+										        </label>
+												<label class="xm-radio">
+										            <input type="radio" name="studioStyleId">多人广播剧
+										        </label>
+										        <span class="tip mgl-10 studioStyleIdTip"></span>
+											</div>
+										</div>
+										<!--e: 原始样式 -->
+										
+										
+										<div class="row">
+											<div class="cell-1">试音开放时间<span class="c04">*</span></div>
+											<div class="cell-2 calendar">
+												<input class=" dateInput" id="openCallStartTime" name="openCallStartTime" type="text" style="margin-right:-35px;" />
+												<i class="icon-6 icon-calendar startDate" ></i>
+												<i class=" icon-calendar"></i>&emsp;至&emsp;
+												<input class=" dateInput" id="openCallEndTime" name="openCallEndTime" type="text" style="margin-right:-35px;" />
+												<i class="icon-6 icon-calendar endDate" ></i>
+												<span class="tip mgl-10 openCallTime"></span>
+											</div>
+										</div>
+										
+										<div class="row part">
+											<div class="cell-1">试音片段文本<span class="c04">*</span></div>
+											<div class="cell-2">
+												<textarea placeholder="1500字以内" class="fileContext_0" name="fileContext" id="fileContext_0"></textarea>&emsp;<a class="btn a-unl del-line a hidden" href="javascript:;">删除</a>
+												<span class="tip mgl-10 fileContext_0_tip"></span>
+												<p class="tip tip-1 part-text-1 partCount_0">您还可以输入<span>1500</span>字</p>
+											</div>
+										</div>
+										
+										<!--s: 新增文本按钮 -->
+										<a class="btn btn-addtxt fr">
+											<i class="icon-4 icon-add"></i> 新增文本
+										</a>
+										<!--e: 新增文本按钮 -->
+									</div>
+								</div>
+								<!--e: 演播要求 -->
+								<p class="tc wrapper1">
+									<a class="btn btn-primary submit" id="submitForm">提交至下一步</a>
+								</p>
+							</form>
+							<!--e: 第1步 -->
+							
+							<!--s: 第2步 -->
+							<div class="tc wrapper1">
+								<img src="../css/img/default/cat1.png">
+								<p class="txt-big c04 mgtb-20">您的授权申请已成功提交</p>
+								<p class="cont">
+									喜马拉雅平台审核将于7-10个工作日完成<br />
+									届时，审核结果将以站内信的方式通知你，请您留意。<br />
+									感谢您对喜马拉雅的支持与信赖！
+								</p>
+								<a class="btn btn-primary mgtb-20" href="#">返回首页</a>
+							</div>
+							<!--e: 第2步提交成功 -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<script src="../js/lib/jquery/1.7.2.js"></script>
+	    <script src="../js/lib/jquery.selector.js"></script>
+	    <script src="../js/lib/jquery.input.js"></script>
+	    <script type="text/javascript" src="../js/plugin/jquery.validate.js"></script>
+			<script type="text/javascript" src="../js/lib/My97DatePicker/WdatePicker.js"></script>
+	    <script type="text/javascript" src="../js/plugin/jquery.wordcount.js"></script>
+	    <script type="text/javascript" src="../js/page/send_task.js"></script>
+	</body>
+</html>

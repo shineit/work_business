@@ -1,0 +1,48 @@
+﻿
+.xm-radio, .xm-checkbox {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.xm-radio:before,.xm-checkbox:before{
+	content: "";
+	display: inline-block;
+	vertical-align: -2px;
+	height: 14px;
+	width: 14px;
+	margin-right: 5px;
+    background: url("img/form.png?v=1") no-repeat;
+}
+
+.xm-radio:hover:before{
+    background-position: -30px 0;
+}
+
+.xm-radio.xm-is-checked:before {
+    background-position: -60px 0;
+}
+
+.xm-radio.xm-is-checked:hover:before {
+    background-position: -90px 0;
+}
+.xm-checkbox:before {	
+    background-position: 0px -30px;
+}
+.xm-checkbox:hover:before{
+    background-position: -30px -30px;
+}
+
+.xm-checkbox.xm-is-checked:before {
+    background-position: -60px -30px;
+}
+
+.xm-checkbox.xm-is-checked:hover:before {
+    background-position: -90px -30px;
+}
+
+.xm-radio input, .xm-checkbox input {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    filter: alpha(0);
+}

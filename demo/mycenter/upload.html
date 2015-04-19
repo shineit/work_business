@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>上传声音</title>
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/v1.css" />
+		<link rel="stylesheet" href="../../css/form/jquery.input.css" />
+		<link rel="stylesheet" href="../../css/form/jquery.selector.css" />
+	    <script src="../../js/lib/jquery/1.7.2.js"></script>
+	    <script src="../../js/lib/jquery.selector.js"></script>
+	    <script src="../../js/lib/jquery.input.js"></script>
+	    <script>	    	
+	        $(function () {	
+	            $(".xm-selector").Selector();
+	            $("input").beautify();
+	            $('.tab .item').click(function(){
+	            	$(this).toggleClass('on').siblings().removeClass('on');
+	            	$('.tab').nextAll().addClass('hidden').eq($(this).index()).removeClass('hidden');
+	            });
+	        });
+	    </script>
+	</head>
+	<body>
+		<div class="page">
+			<!--s: 头部 -->
+			<!--e: 头部 -->
+			
+			<!--s: 内容 -->
+			<div class="container">
+				<div class="main bg-f">
+					<div class="wrapper1">						
+						<!--s: 任务信息 -->
+						<div class="list list-1">							
+							<div class="item task-single cl">
+								<!--s: 图片 -->
+								<div class="pic default-img fl">
+									<i class="icon-5 icon-ing abs"></i>
+									<img src="../../css/img/default/person_86.jpg">
+								</div>
+								<!--e: 图片 -->
+								
+								<!--s: 信息 -->
+								<div class="info">
+									<div class="ovf">
+										<!--s: 标题 -->
+										<h2 class="tit c01 ellipsis fl">
+											诗的时光书
+										</h2>
+										<!--e: 标题 -->
+										
+										<!--s: 作者信息 -->
+										<p class="tag">
+											<span class="c01 mgl-10">苏樱 毛晓雯</span> 著
+										</p>
+										<!--e: 作者信息 -->										
+									</div>
+									<div class="c02 mgtb-20 ovf">
+										<div class="t-cont fl ovf">
+											<p>作品字数：<span class="c05">300000字</span></p>
+											<p>预计时长：<span class="c05">27.8小时</span></p>
+											<p>授权方式：<span class="c05">独家</span></p>
+										</div>
+										<div class="t-cont last fr ovf">
+											<span class="fl">作品期望完成时间：</span>
+											<p class="ovf">
+												<span class="c05 mgr-5">第一章节</span><span class="c04">2015-03-24</span>
+												<br />
+												<span class="c05 mgr-5">正本完成</span><span class="c04">2015-03-24</span>
+											</p>	
+										</div>
+										<div class="t-cont mid">
+											<p>更新频率：<span class="c05">1~2周</span></p>
+											<p>章节时常：<span class="c05">15~25分钟</span></p>
+											<p>收益方式：<span class="c05">分成+提成 50%+￥13000</span></p>
+										</div>
+									</div>
+								
+								</div>
+								<!--e: 信息 -->								
+							</div>
+						</div>
+						<!--e: 任务信息 -->
+						<!--s:  -->
+						<div>
+							<!--s: tab -->
+							<div class="tab tab-h tab-1 cl mgtb-20">
+								<a class="txt a fr" href="#">查看专辑主页</a>
+								<ul class="tab-inner">
+									<li class="item on">
+										<a>上传声音</a>
+									</li>
+									<li class="item">
+										<a>专辑内容</a>
+									</li>
+									<li class="item">
+										<a>文稿下载</a>
+									</li>
+								</ul>
+							</div>
+							<!--e: tab -->
+							
+							<!--s: 上传声音 -->
+							<div class="upload">								
+								<form>		
+									<!--s: 上传第1步 -->
+									<div class="upload-index  mgtb-20">
+										<div>
+											请选择您要上传的文件:<a class="btn btn-upload mgl-10"></a>
+										</div>
+										<div class="mgt-40 a-unl">
+											<p>我们支持MP3, WMA，AIFF，AIF, WAV, FLAC, OGG, MP2, AAC，AMR等文件格式</p>
+											<ul>
+												<li>
+													· 请遵守
+													<a class="a" href="javascript:;">版权声明</a>
+													相关约定，只上传版权拥有者允许你上传的声音文件
+												</li>
+												<li>
+													· 想做出更专业的声音文件，请访问
+													<a class="a" target="_blank" href="http://blog.ximalaya.com/category/college/">喜马拉雅官方博客</a>
+												</li>
+								              </ul>
+										</div>
+									</div>
+									<!--e: 上传第1步 -->
+									
+									<div class="mgtb-20">
+										<!--s: 上传控件 -->
+										<div class="upload-widget">		
+			                                <input class="track_destroy" type="hidden" value="" name="track_destroy">		                            
+			                                <div class="albumList">
+			                                    <ul class="progressBarContainer">		                            
+			                                        <li style="position: relative;">
+			                                            <div class="albumList_r1 cl" style="cursor: move;">
+			                                                <div class="number new">1</div>
+			                                                <div class="albumList_sound">
+			                                                    <div class="soundInfo">
+			                                                        <div class="unedit"><span class="tit">Mind with the flaxen Hair</span><a class="editBtn"></a></div>
+			                                                        <div class="edit"><input type="text"><a class="editConfirm">确认</a><a class="cancel">取消</a>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+			                                                <div class="fr">
+			                                                    <div class="albumList_status"><span class="successIcon">上传成功</span></div>
+			                                                    <a class="del"></a>
+			                                                    <div class="uploadPlayer2  forbid-drag"><a title="试听" class="playBtn"></a></div>
+			                                                </div>
+			                                            </div>
+			                                        </li>
+			                                        <li style="">
+			                                            <div class="albumList_r1 cl" style="cursor: move;">
+			                                                <div class="number">2</div>
+			                                                <div class="albumList_sound">
+			                                                    <div class="soundInfo is-edit">
+			                                                        <div class="unedit"><span class="tit">Mind with the flaxen Hair</span><a class="editBtn"></a></div>
+			                                                        <div class="edit"><input type="text"><a class="editConfirm">确认</a><a class="cancel">取消</a>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+			                                                <div class="fr">
+			                                                    <div class="albumList_status"><span class="successIcon">上传成功</span></div>
+			                                                    <a class="del"></a>
+			                                                </div>
+			                                            </div>
+			                                        </li>
+			                                        <li><input type="hidden" value="" name="track_data[]" class="track_data">
+			                            
+			                                            <div class="albumList_r1 cl" style="cursor: move;">
+			                                                <div class="number">3</div>
+			                                                <div class="albumList_sound">
+			                                                    <div class="soundInfo">
+			                                                        <div class="unedit">
+			                                                            <span title="mov林志颖畅谈赛车情节    望与儿子赛场一争高下" class="tit">mov林志颖畅谈赛车情节    望与儿子赛场一争高下</span>
+			                                                            <a class="editBtn"></a>
+			                                                        </div>
+			                                                        <div class="edit">
+			                                                            <input type="text" name="files[]" value="mov林志颖畅谈赛车情节    望与儿子赛场一争高下">
+			                                                            <a class="editConfirm">确认</a>
+			                                                            <a class="cancel btn-close">取消</a>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+			                                                <div class="fr">
+			                                                    <div class="albumList_status"><span class="failIcon">上传失败,请删除</span></div>
+			                                                    <a class="del"></a></div>
+			                                            </div>
+			                                            <div class="uploadStatus" style="display: block;">
+			                                                <div class="progressBar">
+			                                                    <div class="progress">
+			                                                        <div class="warp"><span class="uploading" style="width: 0px;"></span><span class="info">上传失败，将在 13秒后重试</span>
+			                                                        </div>
+			                                                        <div class="warp"><span style="width:0;" class="converting"></span><span class="info">等待转码</span></div>
+			                                                    </div>
+			                                                    <div class="progMask"></div>
+			                                                    <input type="hidden" name="fileids[]" class="fileid"></div>
+			                                                <span class="albumList_arrow"><i></i></span></div>
+			                                        </li>
+			                                        <li style="cursor: move;">
+			                                        	<div class="albumList_r1 cl">
+			                                            	<div class="number">4</div>
+			                                            	<div class="albumList_sound">
+			                                              		<div class="soundInfo">
+			                                                		<div class="unedit"><span class="tit" title="胡彦斌 - 红颜">胡彦斌 - 红颜</span><a class="editBtn forbid-drag"></a></div>
+			                                                		<div class="edit  forbid-drag">
+			                                                  			<input value="胡彦斌 - 红颜" name="files[]" type="text">
+			                                                  			<a class="editConfirm">确认</a><a class="cancel btn-close">取消</a>
+			                                                         </div>
+			                                              		</div>
+			                                              	<span class="c01"></span></div>
+			                                                <div class="fr">
+			                                                    <div class="albumList_status"><span class="areUploading">正在上传(66%)</span></div>
+			                                                    <a class="del  forbid-drag"></a>
+			                                                </div>
+			                                          </div>
+			                                          <div style="display: block;" class="uploadStatus">
+			                                            <div class="progressBar">
+			                                              <div class="progress">
+			                                                <div class="warp"><span style="width: 100%;" class="uploading"></span><span class="info">上传完成</span></div>
+			                                                <div class="warp"><span class="converting" style="width: 33.33%;"></span><span class="info">转码进度:33.33%</span></div>
+			                                              </div>
+			                                              <div class="progMask"></div>
+			                                              <input value="111966" class="fileid" name="fileids[]" type="hidden">
+			                                            </div>
+			                                            <span class="albumList_arrow"><i></i></span></div>
+			                                        </li>
+			                                        <li style="cursor: move;">
+			                                          <div class="albumList_r1 cl">
+			                                            <div class="number">5</div>
+			                                            <div class="albumList_sound">
+			                                              <div class="soundInfo">
+			                                                <div class="unedit"><span class="tit" title="侃侃 - 滴答（电视剧《北京爱情故事》插曲）">侃侃 - 滴答（电视剧《北京爱情故事》插曲）</span><a class="editBtn forbid-drag"></a></div>
+			                                                <div class="edit  forbid-drag">
+			                                                  <input value="侃侃 - 滴答（电视剧《北京爱情故事》插曲）" name="files[]" type="text">
+			                                                  <a class="editConfirm">确认</a><a class="cancel btn-close">取消</a></div>
+			                                              </div>
+			                                              <span class="c01"></span></div>
+			                                            <div class="fr">
+			                                              <div class="albumList_status"><span class="waitUpload">等待上传</span></div>
+			                                              <a class="del  forbid-drag"></a></div>
+			                                          </div>
+			                                          <div class="uploadStatus">
+			                                            <div class="progressBar">
+			                                              <div class="progress">
+			                                                <div class="warp"><span style="width: 0px;" class="uploading"></span><span class="info">等待上传</span></div>
+			                                                <div class="warp"><span class="converting" style="width:0;"></span><span class="info">等待转码</span></div>
+			                                              </div>
+			                                              <div class="progMask"></div>
+			                                              <input class="fileid" name="fileids[]" type="hidden">
+			                                            </div>
+			                                            <span class="albumList_arrow"><i></i></span></div>
+			                                        </li>
+			                                    </ul>
+			                                    <div class="editAlbum" style="display: block;">
+			                                        <a class="uploadSoundBtn">继续上传新的声音
+			                                            <div class="swfuploadWrap2">
+			                                                <div id="swfupload2"></div>
+			                                            </div>
+			                                        </a>
+			                                    </div>
+			                                </div>
+										</div>
+										<!--e: 上传控件 -->
+										
+										<!--s: 上传到专辑 -->
+										<div class="upload-toalbum">
+											<!--s: 提示信息 -->
+											<p class="tip tip-2 mgtb-10">
+							                	这是您上传的第一条声音，必须要完善新专辑信息才能完成上传哟
+							                </p>		
+											<!--e: 提示信息 -->
+											
+				                            <!--s: 创建专辑-->
+				                            <div class="form2 mgtb-10">
+				                            	<h2 class="header1 tc">完善新专辑信息</h2>
+				                            	<div>
+													<div class="row">
+														<div class="cell-1">专辑名称<span class="c04">*</span></div>
+														<div class="cell-2">
+															<input type="text" />
+														</div>
+													</div>			      
+													<div class="row">
+														<div class="cell-1">来源<span class="c04">*</span></div>
+														<div class="cell-2">
+															<!--s: 下拉框 -->
+															<div class="xm-selector">
+													            <span class="xm-selector-title"></span>
+													            <a href="#" class="xm-selector-arrow" ></a>
+													            <ul class="xm-selector-list" ></ul>
+													            <select class="xm-selector-data">
+													                <option value="0">请选择</option>
+													                <option value="1">一级分类</option>
+													                <option value="2">一级分类</option>
+													                <option value="3">一级分类</option>
+													                <option value="4">一级分类</option>
+													                <option value="5">一级分类</option>
+													                <option value="6">一级分类</option>
+													            </select>
+													        </div>
+													        
+															<!--s: 下拉框 -->
+														</div>
+													</div>
+													<div class="row">
+														<div class="cell-1">分类<span class="c04">*</span></div>
+														<div class="cell-2">
+															<!--s: 下拉框 -->
+													        <div class="xm-selector">
+													            <span class="xm-selector-title">一级分类</span>
+													            <a href="#" class="xm-selector-arrow"></a>
+													            <ul class="xm-selector-list">
+													                <li class="xm-selector-item selected">一级分类</li>
+													            </ul>
+													            <select class="xm-selector-data">
+													                <option value="0">请选择</option>
+													                <option value="1">一级分类</option>
+													            </select>
+													        </div>
+															<!--s: 下拉框 -->
+														</div>
+													</div>	
+													<div class="row">
+														<div class="cell-1">专辑封面<span class="c04">*</span></div>
+														<div class="cell-2">
+															<div class="pic rel">
+																<img src="../../css/img/default/track_100.jpg" />
+																<i class="abs icon icon-loading"></i>
+															</div>
+															<a class="btn btn-default btn-small">上传图片</a>
+															<span class="tip tip-1">文件大小&lt;3M，图片尺寸&gt;500 * 500</span>
+														</div>
+													</div>	
+													<div class="row">
+														<div class="cell-1">标签</div>
+														<div class="cell-2">
+															<div class="input">
+																<div class="tag tag-1 cl">																	
+																	<a class="item"><span>标签</span><u class="del"></u></a>
+																	<a class="item"><span>标签</span><u class="del"></u></a>
+																	<a class="item"><span>标签</span><u class="del"></u></a>
+																	<a class="item"><span>标签</span><u class="del"></u></a>
+																</div>
+																<input type="text">
+															</div>
+															<p class="tip tip-1">最多5个标签，单个标签最长8个汉字，按回车或空格确认</p>
+														</div>
+													</div>	
+													<div class="row">
+														<div class="cell-1">推荐标签</div>
+														<div class="cell-2">
+															<div class="tag tag-2 cl">
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+																<a class="item"><span>标签</span></a>
+															</div>
+														</div>
+													</div>	
+													<div class="row">
+														<div class="cell-1">简介</div>
+														<div class="cell-2">
+															<textarea placeholder="500字以内"></textarea>
+															<p class="tip tip-1">您还能输入<span>499</span>字</p>
+														</div>
+													</div>	
+				                            	</div>
+				                            </div>
+				                            <!--e: 创建专辑-->
+										</div>
+										<!--e: 上传到专辑 -->
+									</div>
+									<p class="mgt-40 tc">									
+										<a class="btn btn-primary"> 确 认 </a>
+									</p>
+								</form>
+							
+								<!--s: 上传成功页 -->
+								<div class="tc wrapper1">
+									<img src="../../css/img/default/cat1.png">
+									<p class="txt-big c04 mgtb-20">上传成功！</p>
+									<p class="cont">
+										您已经成功上传一条声音，查看上传的声音请打开左上方“<span class="c04">专辑内容</span>”标签
+									</p>
+									<a class="btn btn-primary mgtb-20" href="#">返回继续上传</a>
+								</div>
+								<!--e: 上传成功页 -->
+								
+							</div>							
+							<!--e: 上传声音 -->	
+							
+							<!--s: 专辑内容 -->		
+							<div class="album-cont mgtb-20 hidden">								
+								<table class="table-1 a-unl tc" width="100%">
+									<tr class="tb-tit">
+										<th width="7%">序号</th>
+										<th width="25%">名称</th>
+										<th width="10%">音频时常</th>
+										<th width="13%">上传时间</th>
+										<th width="10%">状态</th>
+										<th width="10%">操作</th>
+										<th width="25%">备注</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>全集</td>
+										<td>19:00:23</td>
+										<td>2015-01-21</td>
+										<td>已上传</td>
+										<td><a class="a">删除</a></td>
+										<td><span class="c03"></span></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>全集</td>
+										<td>19:00:23</td>
+										<td>2015-01-21</td>
+										<td><span class="c03">已驳回</span></td>
+										<td><a class="a">删除</a></td>
+										<td><span class="c03">驳回原因</span></td>
+									</tr>
+								</table>
+								<p class="tip tip-1">您可在“<span class="c04">专辑主页</span>”删除或调整声音顺序哟~</p>
+								<p class="mgtb-20">									
+									<a class="btn btn-primary" href="#">完本提交</a>
+									<br />
+									<!--s: 文字章节未提交完本 -->
+									<a class="btn btn-primary disabled" href="#">完本提交</a>
+									<span class="tip">文字章节还未提交完毕，声音章节无法提交完本</span>
+									<!--e: 文字章节未提交完本 -->
+									<br />
+									<!--s: 正在审核 -->
+									<a class="btn btn-primary disabled" href="#">完本提交</a>
+									<span class="tip">完本申请已提交，正在审核中，请耐心等候哟~</span>
+									<!--s: 正在审核 -->
+									<br />
+									<a class="btn btn-primary disabled" href="#">已完本</a>
+								</p>
+							</div>
+							<!--e: 专辑内容 -->
+							
+							<!--s: 文稿下载 -->		
+							<div class="txt-dload mgtb-20 hidden">
+								<table class="table-1 a-unl tc" width="100%">
+									<tr class="tb-tit">
+										<th width="7%">序号</th>
+										<th width="55%">名称</th>
+										<th width="25%">上传时间</th>
+										<th width="13%">操作</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>全集</td>
+										<td>2015年1月21日 19:00:23</td>
+										<td><a class="a">下载</a></td>
+									</tr>
+								</table>
+							</div>
+							<!--e: 文稿下载 -->
+							
+							
+						</div>
+						<!--e: -->
+					</div>
+				</div>
+			</div>
+			<!--e: 内容 -->
+			<div class="dragIcon">拖动改变顺序</div>
+		</div>
+	</body>
+</html>

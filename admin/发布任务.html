@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" ng-app="c_module">
+
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">2013</a></li>
+            <li class="active">十一月</li>
+        </ol>
+
+        <h3 class="page-header">试音相关信息</h3>
+
+        <form class="form-horizontal" name="taskCreateForm" method="post" action="" ng-controller="TaskCreateController">
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">作品名称</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="workName" maxgblen="60" ng-model="entitle.workName" required />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.workName.$dirty && taskCreateForm.workName.$valid"></span>
+                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                </div>
+                <div class="col-sm-5">
+                    <button class="btn btn-default">关联版权</button>
+                    <span class="text-muted">意关联版权：明朝那些事</span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">作者名</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="entitle.authorName">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">作者笔名</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="" name="entitle.authorAlisa">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">分类</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="entitle.categoryId">
+                        <option value="-1">请选择</option>
+                        <option value="3">历史</option>
+                        <option value="2">悬疑</option>
+                        <option value="1">言情</option>
+                        <option value="7">社科</option>
+                        <option value="6">武侠</option>
+                        <option value="5">都市</option>
+                        <option value="4">玄幻</option>
+                        <option value="8">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">字数</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="entitle.totalWordCount" value="">
+                </div>
+                <div class="col-sm-5">
+                    <label class="text-muted control-label">字</label>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">作品简介</label>
+                <div class="col-sm-5">
+                    <textarea name="entitle.workBrief" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">演绎方式</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" value="10" name="entitle.studioStyleId">单人女声
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="9" name="entitle.studioStyleId">单人男声
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="13" name="entitle.studioStyleId">多人小说剧
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="11" name="entitle.studioStyleId">男女双人
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="12" name="entitle.studioStyleId">多人广播剧
+                    </label>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">试音开放时间</label>
+                <div class="col-sm-4">
+                    <div class=" input-group">
+                        <input value="2015-04-01" name="entitle.openCallStartTime" class="form-control">
+                        <div class="input-group-addon">至</div>
+                        <input value="2016-04-08" name="entitle.openCallEndTime" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">
+                    试音片段文本A
+                </label>
+                <div class="col-sm-5">
+                    <textarea name="entitle.fileContext" class="form-control"></textarea>
+                </div>
+                <div class="col-sm-a">
+                    <button class="btn btn-link" type="button">新增</button>
+                </div>
+            </div>
+            <div ng-repeat="fileContext in filesContext">
+                <div class="form-group has-feedback">
+                    <label class="col-sm-2 control-label">
+                        试音片段文本
+                    </label>
+                    <div class="col-sm-5">
+                        <textarea name="entitle.fileContext" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-a">
+                        <button class="btn btn-link" type="button">删除</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">
+                    封面
+                </label>
+                <div class="col-sm-5">
+                    <button class="btn btn-default">上传文件</button>
+                    <span class="text-muted">建议上传500*500像素以上，3M以下的图片</span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">预计时长</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="15小时" name="expectedTotalTimeLength" />
+                </div>
+                <div class="col-sm-5">
+                    <label class="text-muted control-label">如：32.5小时</label>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">授权方式</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="distributionType">
+                        <option value="-1"></option>
+                        <option selected="selected" value="1">独家</option>
+                        <option value="2">非独家</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">收益方式</label>
+                <div class="col-sm-10">
+                    <label style="padding-top:0;" class="radio-inline">
+                        <input type="radio" value="1" name="paymentOptionId">
+                        一口价
+                    </label>
+                    <label style="padding-top:0;" class="radio-inline">
+                        <input type="radio" value="2" name="paymentOptionId">
+                        分成
+                    </label>
+                    <label style="padding-top:0;" class="radio-inline">
+                        <input type="radio" checked="" value="3" name="paymentOptionId">
+                        保底+分成
+                    </label>
+                    <div style="padding-top:0;" class="form-inline radio-inline">
+                        <div class="form-control-static input-group">
+                            <input type="text" value="23423" style="width:70px;" name="prePayAmount" class="form-control">
+                            <span class="input-group-addon">元 +</span>
+                            <input type="text" value="0.6" style="width:70px;" name="royaltyShareRatio" class="form-control">
+                            <span class="input-group-addon">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">更新频率</label>
+                <div class="col-sm-3">
+                    <input type="text" value="1-2周" class="form-control" name="updateFrequency">
+                </div>
+                <div class="col-sm-5">
+                    <label class="text-muted control-label">如：1~2周</label>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">章节时长</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="30分钟" name="expectedSectionTimeLength">
+                </div>
+                <div class="col-sm-5">
+                    <label class="text-muted control-label">如：15~20分钟</label>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">期望完成时间（第一章）</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="2015-03-03" name="theFirstSectionFinishedTime">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">期望完成时间（全部）</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="2015-03-18" name="allSectionsFinishedTime">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">
+                    上传文稿
+                </label>
+                <div class="col-sm-5">
+                    <button class="btn btn-default">上传文件</button>
+                    <span class="text-muted">可以同时上传多个文件，单个文件建议不超过2M</span>
+                    <div class="input-group">
+                        <label>明朝那些事.txt</label>
+                        <button class="btn btn-link">删除</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">联系人</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="" name="entitle.contactName">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">联系人电话</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="" name="entitle.contactPhoneNo">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <div class="col-sm-5 col-sm-offset-2">
+                    <div class="btn-group-sm text-center">
+                        <button class="btn btn-default">驳回</button>
+                        <button class="btn btn-info">发布</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/libs/jquery-2.1.3.js"></script>
+    <script src="js/plugins/bootstrap/bootstrap.js"></script>
+    <script src="js/plugins/angular/angular.js"></script>
+    <script src="js/plugins/angular/angular-ui-bootstrap.js"></script>
+    <script src="js/plugins/angular/angular-animate.js"></script>
+    <script src="js/plugins/angular/angular-loadingbar.js"></script>
+    <script src="js/plugins/angular/angular-messages.js"></script>
+
+    <script src="js/modules/c_module.js"></script>
+    <script src="js/directives/validation.js"></script>
+
+    <script src="js/controllers/task_controller.js"></script>
+
+</body>
+</html>

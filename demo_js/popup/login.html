@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>弹出框</title>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/v1.css" />
+		<link rel="stylesheet" href="../css/form/jquery.input.css" />
+	    <script src="../js/lib/jquery/1.7.2.js"></script>
+		<script type="text/javascript">
+		var config = {}
+		</script>
+	
+	    <script src="../css/form/js/jquery.input.js"></script>
+	    <script src="http://s1.xmcdn.com/wap/js/lib/soundmanager2/soundmanager2.js?v=20150306114909" type="text/javascript"></script>    
+	    <script type="text/javascript" src="../js/lib/xm/xm.js"></script>
+	    <script type="text/javascript" src="../js/lib/jquery/1.7.2.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.easydrag.js"></script>
+		<script type="text/javascript" src="../js/lib/underscore.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.placeholder.js"></script>
+		<script type="text/javascript" src="../js/lib/helper.js"></script>
+		<script type="text/javascript" src="../js/common/base_login.js"></script>
+		<script type="text/javascript" src="../js/lib/city_data.js"></script>
+		<script type="text/javascript" src="../js/lib/city.js"></script>
+		<script type="text/javascript" src="../js/lib/dialog.js"></script>
+		<script type="text/javascript" src="../js/common/login_box.js"></script>
+	    <script>	    	
+	        $(function () {	
+
+	            $("#loginBtn").click(function() {
+	            	if(!xm.loginUtil.isLogin()){
+	            		window.xm.login_box.open();
+	            	}
+					
+				});
+	        });
+	    </script>
+	</head>
+	<body>
+
+		<div id="loginBtn" style="position: relative;left: 100px;top:50px;float: left;background: #de2323;font-size: 20px;">
+			登录
+		</div>
+		
+	</body>
+</html>

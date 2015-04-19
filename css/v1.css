@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+.title { font-size: 18px;}
+.intro { font-size: 12px; margin: 6px 0; line-height: 1.5; white-space:normal; word-wrap: break-word; overflow: hidden;}
+.cont { line-height: 1.5;}
+.row { margin: 20px 0;}
+.cell-1 { float: left; text-align: right; line-height: 30px;}
+.cell-2 { line-height: 30px;}
+.btn-addtxt { font-size: 12px; padding: 5px 10px; background: #fafafc; margin: -25px 308px 0 0;}
+input { width: 120px; height: 22px; line-height: 22px;}
+input[type=file] { border: 0; width: auto;}
+.xm-selector { width: 140px; padding: 0;}
+textarea { width: 420px; height: 70px; resize: none; line-height: 1.3;}
+.xm-selector:hover,.xm-selector.error,
+input:focus,input.error,
+.input:focus,.input.error,
+textarea:focus,textarea.error 
+{ 
+	border-color: #ff6000; 
+	background: #fafafc;
+}
+.xm-selector.open .xm-selector-list,.xm-selector.open { border-color: #ff6000;}
+.cell-2 .tip { font-size: 12px;}
+.form .cell-1 { width: 120px; }
+.form .cell-2 { margin-left: 170px;}
+.form .calendar input{ width: 90px; padding-right: 40px; margin-right: -25px;}
+
+.form1 .cell-1 { font-size: 16px;}
+.form1 .cell-2 { margin-left: 50px;}
+.form1 input { width: 160px;}
+
+.form2 .cell-1 { width: 65px;}
+.form2 .cell-2 { margin-left: 85px;}
+
+/* ------ 首页 ------ */
+.banner { min-width: 960px;}
+.banner img { width: 100%;}
+.banner .main{ top: 40%; left: 50%; margin: -70px -480px;}
+.slogen { height: 130px; background: url("img/index/slogen.png") no-repeat; margin-left: 50px;}
+.banner .new-hand { display: inline-block; width: 90px; height: 40px; background: url("img/index/new_hand.png") no-repeat; margin-top: 5%; margin-left: 285px;}
+.p-index { background: #fff;}
+.p-index .main{ padding: 20px 0;}
+.p-index .item1 { width: 430px; line-height: 1.4;}
+.p-index .title { font-size: 16px;}
+.p-index .pic { float: left; width: 120px; height: 120px; margin-right: 40px;}
+.p-index .intro { height: 4em;}
+
+/* ------ 新手指南 ------ */
+.header1 { padding: 0 20px; line-height: 80px; color: #f86442; font-size: 28px; background: #eee; font-weight: 400;}
+.userguide {}
+.userguide .step .num { background-position: 0 -50px;}
+
+/* ------ 步骤 ------ */
+.step { color: #999; line-height: 1.3;}
+.step2 .step-item{ width: 50%;}
+.step4 .step-item{ width: 25%;}
+.step-item { float: left; height: 100%; text-align: center;}
+.step-line{ background-color: #eee; height:8px;}
+.step .num { font-size: 22px; width:40px;line-height:40px; color: #fff; margin-top: -16px; display: inline-block; background:url("img/common/bg_1.png") no-repeat; vertical-align: middle;}
+.step-item.on { color: #f86442; background: #f86442;}
+.step-item.on .num{ background-position: 0 -50px;}
+
+/* -- 分类选择器 -- */
+.selecter-classify { border: 1px solid #ddd; border-width: 1px 0; }
+.selecter-classify .tag { border-top: 1px dotted #ddd; padding: 0 20px;}
+.selecter-classify .tag:first-child { border: 0; }
+.selecter-classify .tit {  float: left; width: 75px; border-right: 1px solid #ddd; line-height: 1; margin: 9px 0; color: #999; white-space: nowrap; overflow: hidden; }
+.selecter-classify .tag-wrapper { margin-left: 75px;}
+.selecter-classify .item { margin: 5px 20px; border: 0; background: none; }
+
+/* -- 排序 -- */
+.sort { padding: 5px 20px; line-height: 30px;}
+.sort .tab { overflow: hidden;}
+
+/* -- 简介 -- */
+.intro-1 { height: 4.5em;}
+.intro-2 { height: 3em;}
+.intro-3 { font-size: 14px; line-height: 1.3em; height: 2.6em; }
+.intro.open { height: auto;}
+
+/* -- 展开、收起 -- */
+.more{ font-size: 12px; color: #3485ba; }
+
+/* -- 用户中心 -- */
+.u-info .pic { width: 110px; height: 110px; margin-right: 25px;}
+.u-info .info { overflow: hidden;}
+.u-info .name { font-size: 18px;}
+.u-center { margin-top: -10px;}
+.u-center .tab-3 ul { margin: -30px 0 0 155px;}
+.u-center-cont { border: 1px solid #f86442; padding: 10px 20px 20px 20px;}
+.msg-center .intro a{ color: #3485ba;}
+.msg-center .intro a:hover{ text-decoration: underline;}
+.u-center-cont .mid{ margin: 12px 0;}
+.u-center-cont .u-info .info{ line-height: 1.4;}
+.my-task .task-divide-1 .task-did { margin-top: 15px;}
+
+/* -- 任务分成 -- */
+.task-divide { position: relative; margin-right: -20px; width: 256px;}
+.task-divide .pic { width: 86px; height: 86px; margin: 0 auto; margin-bottom: 10px;}
+.task-did{ margin-top: 9px; font-size: 12px; line-height: 1.5; padding: 0 20px;}
+.task-divide-1 .task-did{ margin-top: 50px; line-height: 2.5;}
+.task-did .num { font-size: 16px;}
+.status-enlist .task-did .num,.status-check .task-did .num { font-size: 18px;}
+.task-divide .icon-success,.task-divide .icon-fail { top:-20px; right: 0; z-index: 9;}
+.status-enlist .icon-day { margin-top: -25px ; color: #fff; font-size: 14px; line-height: 21px; padding-top: 4px; text-align: center; overflow: hidden;}
+.status-enlist .icon-day span{ font-size: 16px; color: #FFD24C;}
+.task-divide-1 .icon-day{ left: 96px;}
+.type { color: #fff; margin-left: 5px; padding: 0 3px; vertical-align: 1px;}
+.type-1 { background: #52A4D2; }
+.type-2 { background: #71B963; }
+.type-3 { background: #F54E51; }
+
+/* -- 任务详情页 -- */
+.item.task-single:hover { outline: none;}
+.task-single .tag{ display: inline-block; margin: 9px 0 0 5px; }
+.task-single .u-info{ margin-bottom: 18px; }
+.task-single .btn.a { margin-left: 5px;}
+.task-single .tip { margin: 5px 0 -10px;}
+
+/* -- 试音文段 -- */
+.audition-txt .intro { font-size: 14px; white-space: pre-wrap;}
+.audition-txt .tip { margin: 10px 0 -40px; font-size: 12px;}
+.list-audition { width: 820px; margin: 0 auto;}
+
+/* -- 登录弹窗 -- */
+.pop-login { width: 560px; }
+.pop-login .hd { background: #f86442; line-height: 56px; padding: 0 10px;}
+.pop-login .tit { color: #fff; font-size: 18px; text-align: center;}
+.pop-login .form1 { width: 232px; padding: 0 34px;}
+.pop-login .dx { font-size: 12px; line-height: 14px; margin: 50px 0 10px;}
+.pop-login .right { background: url("img/common/pop_vline.png") repeat-y; width: 190px; padding: 0 34px; margin: 20px 0;}
+.login-sina,.login-qq ,.login-rr  { background: url("img/common/third_login.png") no-repeat; width: 190px; height: 55px; margin-bottom: 13px;}
+.login-sina  { background-position: 0 0 ;}
+.login-qq  { background-position: 0 -70px ;}
+.login-rr  { background-position: 0 -140px ;}
+/* -- 确认弹窗 -- */
+.pop-default { width: 480px; border: 1px solid #ccc;}
+.pop-default .hd{ line-height: 28px; border-bottom: 1px solid #ccc; padding: 0 10px;
+	background-image: -moz-linear-gradient(#f8f8f8, #eee);
+	background-image: -webkit-linear-gradient(#f8f8f8, #eee);
+	background-image: linear-gradient(#f8f8f8, #eee);}
+.pop-default .bd{ line-height: 1.5; padding: 0 30px;} 
+/* -- 拒绝弹框 -- */
+.pop-refuse .pic{ margin: 30px 30px 0 0;}
+.pop-refuse textarea { width: 240px; height: 90px;}
+/* -- 签约弹框 -- */
+.pop-sign { width: 680px;}
+.pop-sign .pre{ width: 96%; height: 170px; overflow: scroll; margin-top: 15px; border: 1px solid #ddd;}
+
+/* -- 上传 -- */
+.upload {}
+.upload-index { font-size: 12px; line-height: 1.5; }
+.upload-widget,.upload-toalbum { width: 728px; margin: 0 auto;}
+.btn-upload { width: 140px; height: 40px; background: url("img/common/btn_upload.png") no-repeat; position: relative;}
+.btn-upload:hover { background-position: 0 -50px;}
+.btn-upload:active { background-position: 0 -100px;}
+
+.albumList {border: 1px solid #EAEAEA; border-top: 0;}
+.progressBarContainer {position: relative; line-height: 18px; font-size: 12px;}
+.albumList ul li {border-top: 1px solid #EAEAEA; overflow: hidden; width: 726px;}
+.editBtn,.successIcon,.failIcon,.del,.areUploading,.waitUpload,.playBtn,.dragIcon {background: url("img/common/icon_4.png") no-repeat;} 
+.number {width: 30px;height: 42px;text-align: center;line-height: 39px;background-color: #eee; float: left;}
+.number.new {background-color: #f86442;color: #fff;}
+.albumList_sound {float: left ;padding: 8px 10px 10px 10px;}
+.soundInfo {height: 22px;}
+.soundInfo .tit {font-size: 14px;margin-right: 5px;vertical-align: middle;max-width: 420px;overflow: hidden;display: inline-block;height: 18px;}
+.editBtn {width: 10px;height: 10px;cursor: pointer;display: inline-block;overflow: hidden;background-position: 0 -240px;vertical-align: middle;background-color: #fff;}
+.soundInfo .edit{ display: none;}
+.soundInfo.is-edit .edit{ display: inline-block;}
+.soundInfo .edit input{ width: 250px; height: 19px; margin-right: 6px; padding: 0 5px; line-height: 19px;}
+.editConfirm {text-align: center;color: #fff;padding: 0 7px;height: 21px;line-height: 21px;display: inline-block;border-radius: 2px;background-color: #ec4d00;}
+.cancel { color: #3586bc; margin-left: 5px;}
+.soundInfo.is-edit .unedit{ display: none;}  
+.albumList_r1 { background-color: #ffffff;position: relative;overflow: hidden;}
+.albumList_r1 .fr {width: 160px;padding: 11px;}
+.albumList_status {float: left ;}
+.albumItem-holder {background-color: #FFF;position: relative;}
+.successIcon,.failIcon,.areUploading,.waitUpload { padding-left: 15px;line-height: 15px;float: left;}
+.successIcon {background-position: 0px -325px;}
+.failIcon {background-position: 0px -341px;}
+.areUploading {background-position: 0px -271px;}
+.waitUpload {background-position: 0px -253px;}
+.del {display: inline-block;margin: 3px 0 0 15px;background-position: 0 -290px;width: 15px;height: 15px; float: right;}
+.del:hover {background-position: 0 -310px;}
+.uploadStatus {background-color: #FAFAFC;border-top: 1px solid #EAEAEA;padding: 10px;position: relative;display: none;}
+.albumList .progressBar {width: 710px;height: 20px;overflow: hidden;background: url("img/upload/uploadPrograssBar_bg.png");}
+.progressBar .progress {width: 710px;height: 100%;position: relative;margin: 0 auto;}
+.progressBar .warp {position: relative;width: 354px;height: 20px;overflow: hidden;float: left;}
+.progressBar .warp:first-child {border-right: 2px solid #fff;}
+.progressBar .warp span {display: block;height: 100%;}
+.progressBar .info {position: absolute;top: 0;left: 0;color: #fff;width: 349px;padding-left: 5px;line-height: 20px;}
+.progressBar .warp .uploading {background: url("img/upload/uploadPrograssBar_green.png");}
+.progressBar .warp .converting {background: url("img/upload/uploadPrograssBar_red.png");}
+.uploadStatus .albumList_arrow,.albumList_arrow i {position: absolute;display: block;width: 0;height: 0;z-index: 9999;border-width: 0 8px 8px 8px;border-style: dashed dashed solid dashed;border-color: transparent transparent #eaeaea;top: -8px;left: 50px;border-bottom: 8px solid #eaeaea;}
+.albumList_arrow i{left: -8px;top: 2px;border-bottom-color: #fafafc;}
+.playBtn,.is-ready .playBtn,.is-paused .playBtn {width: 20px;height: 20px;display: inline-block;background-position: 0px -360px;vertical-align: middle; float: right; }
+.playBtn:hover { background-position: 0px -385px;}
+.is-loading .playBtn,.is-playing .playBtn{ background-position: 0 -410px; }
+.is-loading .playBtn:hover,.is-playing .playBtn:hover{ background-position: 0 -435px; }
+.editAlbum {background-color: #fafafa;border-top: 1px solid #EAEAEA;padding: 20px;text-align: center;display: none;}
+.uploadSoundBtn {background: #fff;width: 138px;height: 32px;cursor: pointer;display: inline-block;overflow: hidden;vertical-align: middle;border: 1px solid #DDDDDD;border-radius: 3px;text-align: center;color: #333;font-size: 14px;line-height: 34px;}
+.uploadSoundBtn:hover {background-color: #f86442;color: #fff;}
+.dragIcon {padding-left: 12px; background-position: 0px -478px;line-height: 21px;float: left;position: absolute;z-index: 20;left: -200px;}
+
+.upload-toalbum .header1 { font-size: 18px; line-height: 40px;}
+.upload-toalbum .pic {width: 100px;height: 100px;padding: 5px;border: 1px solid #d3d3d3;background-color: #fafafa; display: inline-block; vertical-align: bottom; margin-right: 5px;}
+.upload-toalbum .pic img{ width: 100%; height: 100%;}
+.upload-toalbum .tip{ vertical-align: bottom;}
+.form2 .btn-small{ margin: 5px 5px 0 0;}
+.form2 .tag-2{ padding: 0 10px;}
+.form2 .input input{ width: 100%; border: 0; padding: 0;}
+.form2 .input input:focus{ background: none;}
+
+.album-cont {}
+.txt-dload {}
+.tb-tit th{ color: #999; font-weight: normal;}
+.table-1 { word-break: break-all;}
+.table-1 td,.table-1 th{ border: 1px solid #bbb; padding: 5px; line-height: 30px; }
+.table-1 .num{ width: 50px; }
+
+/* -- 我的任务 -- */
+.t-cont { width: 170px; margin-right: 5px; line-height: 1.8;}
+.t-cont.mid { width: 220px;}
+.t-cont.last { width: 310px; margin: 0;}
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>qrcode二维码</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="/js/lib/jquery/1.7.2.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery-qrcode/qrcode.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery-qrcode/jquery.qrcode.js"></script>
+</head>
+<body>
+	
+	<div id="qrcode_demo" >
+		
+	</div>
+
+	<script type="text/javascript">
+		var frame = '<iframe height="36" width="260" src="http://www.ximalaya.com/swf/sound/purple.swf?id=6060246" frameborder=0 allowfullscreen></iframe>';
+		jQuery("#qrcode_demo").qrcode({
+		width:150,
+		height:150,
+		foreground:'#9C59B8',
+		text: frame
+	});
+	</script>
+</body>
+</html>

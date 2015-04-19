@@ -1,0 +1,268 @@
+@charset "utf-8";
+body,h1,h2,ul,ol,p { margin: 0; padding: 0;}
+ul { list-style: none;}
+body{ font-family: "\5FAE\8F6F\96C5\9ED1",STHeiTi; background: #fafafc; color: #666; font-size: 14px; line-height: 1; }
+a {text-decoration:none;outline:0;cursor:pointer;color: inherit;}
+input,textarea,.input,.xm-selector { outline: 0; padding: 3px 10px; vertical-align: middle; border: 1px solid #ddd; color: #666; font-size: 14px; font-family: "\5FAE\8F6F\96C5\9ED1", STHeiTi;}
+table { border-spacing: 0; border-collapse: collapse;}
+.cl:before, .cl:after { content: ""; display: block; height: 0px; clear: both; }
+.fl { float: left;}
+.fr { float: right;}
+.rel { position: relative;}
+.abs { position: absolute;}
+.hidden { display: none !important;}
+.block { display: block !important;}
+.ovf { overflow: hidden;}
+.tc { text-align: center;}
+.ta-r { text-align: right;}
+.c01 { color: #3485ba; }
+.c02 { color: #999;}
+.c03 { color: #f00;}
+.c04 { color: #f86442;}
+.c05 { color: #666;}
+.mgtb-10 { margin: 10px 0;}
+.mgtb-20 { margin: 20px 0;}
+.mgt-25 { margin-top: 25px;}
+.mgt-40{ margin-top: 40px;}
+.mgr-5 { margin-right: 5px;}
+.mgl-10 { margin-left: 10px;}
+.txt-big { font-size: 24px;}
+.txt-mid { font-size: 22px;}
+.txt-mid1 { font-size: 16px;}
+.fz-12 { font-size: 12px;}
+.default-img,.default-user { background: no-repeat center; background-size: 100%; line-height: 1;}
+.default-img { background-image: url("img/default/album.jpg"); }
+.pic { overflow: hidden;}
+.pic img{ width:100%;}
+.u-info .default-img,.default-user { background-image: url("img/default/person.jpg");}
+
+img,.icon,.icon-1,.icon-2,.icon-3,.icon-4,.icon-5,.icon-6,.btn{ border: none; display: inline-block; vertical-align: middle;}
+.btn { text-align: center;user-select: none;-webkit-user-select: none; border-radius: 5px;}
+.btn-primary { background: #f86442; color: #fff; padding: 10px 15px; font-size: 16px; border: 1px solid #f86442; line-height: 1; }
+.btn-primary:hover { background: #cd2b07; border-color: #cd2b07; }
+.btn-default { background: #fff; padding: 10px 15px; font-size: 16px; border: 1px solid #ddd; line-height: 1; }
+.btn-default:hover { background: #eee; }
+
+.btn-big {padding: 19px 30px;}
+.btn-small { font-size: 12px; padding: 4px 10px;}
+.btn-mid { font-size: 14px; padding: 7px 10px;}
+
+.icon-1 { background: url("img/common/icon_1.png") no-repeat;}
+.icon-service { width: 26px; height: 20px; background-position: 0 0;}
+.icon-xl { width: 28px; height: 24px; background-position: 0 -30px;}
+.icon-wx { width: 28px; height: 22px; background-position: 0 -70px;}
+.icon-bd { width: 24px; height: 24px; background-position: 0 -110px;}
+.icon-db { width: 22px; height: 24px; background-position: 0 -150px;}
+.icon-kj { width: 26px; height: 24px; background-position: 0 -190px;}
+
+.icon-2 { background: url("img/common/icon_2.png") no-repeat; }
+.icon-android { width: 122px; height: 31px; background-position: 0 0; }
+.icon-iphone { width: 122px; height: 31px; background-position: 0 -38px; }
+
+.icon-3 { width: 16px; height: 16px; background: url("img/common/icon_3.png") no-repeat; }
+.icon-xl3 { background-position: 0 -16px;}
+.icon-xl3:hover { background-position: 0 0; }
+.icon-tx3 { background-position: 0 -48px; }
+.icon-tx3:hover { background-position: 0 -32px; }
+
+.icon-4 { background: url("img/common/icon_4.png") no-repeat;}
+.icon-arrow1 { width: 14px; height: 14px; background-position: 0 0; vertical-align: -2px; }
+.icon-arrow2 { width: 9px; height: 6px; background-position: 0 -20px; }
+.icon-arrow3 { width: 7px; height: 4px; background-position: 0 -40px; }
+.icon-arrow4 { width: 7px; height: 4px; background-position: 0 -50px; }
+.icon-player { width: 7px; height: 9px; background-position: 0 -60px; }
+.icon-share { width: 14px; height: 13px; background-position: 0 -75px; vertical-align: -2px; }
+.icon-player1,.is-ready .icon-player1,.is-paused .icon-player1{ width: 24px; height: 24px; background-position: 0 -95px; }
+.is-loading .icon-player1,.is-playing .icon-player1{background-position: 0 -125px; }
+.icon-dot { width: 12px; height: 12px; background-position: 0 -155px; }
+.icon-add { width: 10px; height: 10px; background-position: 0 -175px; vertical-align: 0px;}
+.icon-close { width: 22px; height: 22px; background-position: 0 -190px;}
+.icon-home { width: 17px; height: 12px; background-position: 0 -220px; vertical-align: -1px;}
+.icon-edit { width: 10px; height: 10px; background-position: 0 -240px;}
+.icon-time { width: 11px; height: 11px; background-position: 0 -255px;}
+.icon-up { width: 7px; height: 9px; background-position: 0 -275px;}
+.icon-close1{ width: 13px; height: 13px; background-position: 0 -290px;}
+.icon-close1:hover{ background-position: 0 -310px;}
+.icon-gou{ width: 10px; height: 9px; background-position: 0 -329px;}
+.icon-cha{ width: 10px; height: 9px; background-position: 0 -345px;}
+.icon-cha1 { width: 10px; height: 10px; background-position: 0 -460px;}
+.icon-task { width: 16px; height: 19px; background-position: 0 -505px;}
+.icon-person { width: 16px; height: 18px; background-position: 0 -530px;}
+.icon-lock { width: 16px; height: 17px; background-position: 0 -555px;}
+.icon-arrow5 { width: 9px; height: 5px; background-position: 0 -580px; }
+
+.icon-5 { background: url("img/common/icon_5.png") no-repeat;}
+.icon-enlist,.status-enlist .icon-ing { width: 60px; height: 60px; background-position: 0 0; }
+.icon-check,.status-check .icon-ing { width: 60px; height: 60px; background-position: 0 -70px; }
+.icon-beam,.status-beam .icon-ing { width: 60px; height: 60px; background-position: 0 -140px; }
+.icon-finish,.status-finish .icon-ing { width: 60px; height: 60px; background-position: 0 -210px; }
+.icon-day { width: 64px; height: 50px; background-position: 0 -280px;}
+.icon-success { width: 100px; height: 84px; background-position: 0 -340px;}
+.icon-fail { width: 100px; height: 84px; background-position: 0 -440px;}
+
+.icon-6 { background: url("img/common/icon_6.png") no-repeat;}
+.icon-calendar { width: 25px; height: 22px; background-position: 0 0; }
+
+.icon-loading { width: 32px; height: 32px; background: url("img/common/loading.gif") no-repeat; display: none;}
+.is-loading .icon-loading { display: inline-block !important;}
+.pic .icon-loading { left: 50%; top: 50%; margin: -16px 0 0 -16px; position: absolute;}
+
+/* 不可用 */
+.disabled,.disabled:hover { pointer-events: none; background-color: #ddd; border-color: #ddd;}
+.none-select { -moz-user-select: none;-webkit-user-select: none;user-select: none;}
+/* 圆 */
+.circle { border-radius: 50%; overflow: hidden; }
+/* 文本省略 */
+.ellipsis,.name1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+/* 遮罩层 */
+.masker { position: fixed; width: 100%; height: 200%; z-index: 99; background-color: #000; filter: alpha(opacity=40); opacity: 0.4;}
+/* 提示信息 */
+.tip { color: #f86442; line-height: 20px;}
+.tip-1 { color: #999;}
+.tip-2 { background:#f6f6f6 url("img/common/bg_1.png") no-repeat 0 -98px; line-height: 40px; height: 40px; padding-left: 50px; font-size: 12px;}
+.pass-count-tip { color: #f86442;}
+.container { margin: 40px 0;}
+.main { width: 960px; margin: 0 auto;}
+.main-big { width: 700px;}
+.wrapper { padding: 15px 0;}
+.wrapper1 { padding: 20px;}
+.wrapper2 { padding: 0 20px;}
+
+/* -- 链接普通样式 -- */
+.a-unl.a,.a-unl .a {color: #3586bc;}
+.a-unl.a:hover,.a-unl .a:hover {text-decoration:underline;}
+/* -- 颜色 -- */
+.footer,.list > .item, .sort,.bg-1 { background: #f6f6f6; }
+.bg-f { background: #fff;}
+/* -- 水平 -- */
+.tab-h .item,.list-h .item, .nav .item { float: left;}
+.tab .item { text-align: center;}
+
+/* 列表  */
+.tb { display: table;}
+.td { display: table-cell; vertical-align: middle;}
+/* 列表  */
+.list {}
+.list .tit{ display: inline-block; font-weight: 400; margin-right: 10px; vertical-align: -2px;}
+.list .name{ color: #333;}
+.list .name1 { display: inline-block; max-width: 50%; vertical-align: middle;}
+.item { white-space: nowrap;}
+.item > a { display: block;}
+.list-1 > .item { padding: 20px; }
+.list-1 > .item:hover { outline: 1px solid #f86442; }
+.list-1 .pic {width: 160px; height: 160px; position: relative;}
+.list-1 .info { margin-left: 180px;}
+.list-1 .tit { font-size: 22px; margin-bottom: 20px; }
+.list-1 .compl { margin-right: 240px;}
+.list-2 > .item { padding: 10px; font-size: 12px;}
+.list-2 .pic { width: 86px; height: 86px;}
+.list-2 .info { margin-left: 96px; }
+.list-2 .tit { max-width: 400px; font-size: 14px;}
+.list-2 .name { display: inline-block; margin-right: 10px; width: 115px; color: #3485ba;}
+.list-2 .mid { margin: 13px 0;}
+.btn-share { color: #f86442; position: relative;}
+.pop-code { display: none; position: absolute; bottom: 15px; left: -55px; font-size: 12px; color: #fff; line-height: 22px; width: 100px; height: 148px; background: url("img/common/bg_code.png") no-repeat; padding: 0 11px; white-space: nowrap; overflow: hidden;}
+.pop-code .code{ width: 100px; height: 100px; margin: 10px auto; }
+.btn-share:hover .pop-code { display: block;}
+
+.list-3 .pic { width: 100px; height: 100px; position: relative; overflow: visible;}
+.list-3 .info { overflow: hidden;}
+.list-3 .msg { font-size: 10px; right: -15px; top: -5px;}
+
+/* -- 选项卡 -- */
+.tab { font-size: 14px; color: #999;}
+.tab .a { color: #3485ba; text-decoration: underline;}
+.tab .item:hover,.tab .item.on,.tab .txt:hover { color: #f86442;}
+.tab-1 { border-bottom: 1px solid #eee;}
+.tab-1 .item > a ,.tab-1 .txt { padding: 10px 15px;}
+.tab-1 .item.on:after { content: ""; height: 4px; display: block; background: #F86442; margin-bottom: -1px;}
+.tab-3 { color: #f86442; border-bottom: 3px solid #f86442;}
+.tab-3 .item { margin-right: 10px; border-radius: 5px 5px 0 0; background: #feefec;}
+.tab-3 .item > a { padding: 8px 15px;}
+.tab-3 .item:hover,.tab-3 .item.on { color: #fff; background: #f86442;}
+/* -- 标签 -- */
+.tag { overflow: hidden;}
+.tag .item { float: left;}
+.tag .item i {float: left; margin: 0 7px; width: 1px; height: 14px; background: #aaa;}
+.tag .item:first-child i{ display: none;}
+
+.tag-2 { background: #fafafa;}
+.tag-1 .item,.tag-2 .item { height: 27px; line-height: 27px; background: url("img/common/auto.png") no-repeat; padding: 0 10px 0 19px; margin: 3px 7px 3px 0; position: relative;}
+.tag-1 span,.tag-2 span { background: url("img/common/auto.png") no-repeat; display: inline-block; padding-right: 10px; margin-right: -10px;}
+.tag-1 .item { background-position: 0 0;}
+.tag-1 .item span{ background-position: right 0;}
+.tag-1 .item:hover { background-position: 0 -35px;}
+.tag-1 .item:hover span{ background-position: right -35px;}
+.tag-2 .item { background-position: 0 -70px;}
+.tag-2 .item span{ background-position: right -70px;}
+.tag-2 .item:hover { background-position: 0 -105px;}
+.tag-2 .item:hover span{ background-position: right -105px;}
+.tag .del{ position: absolute; right: -5px; margin: 0; display: none;}
+.tag .item:hover .del{ display: inline-block;}
+
+/* -- 表格 -- */
+
+/* ------ 分页 、及tab1、分类选择器------ */
+.paging-bar,
+.tab-2,
+.selecter-classify { font-size: 12px; color: #666;}
+.paging-bar .page,
+.tab-2 .item,
+.selecter-classify .item{ display: inline-block; line-height: 19px; margin: 5px; padding: 0 8px; border: 1px solid #ddd; background: #fff; }
+.paging-bar .page.on,
+.tab-2 .item.on,
+.selecter-classify .item.on,
+.selecter-classify .item:hover { background: #F86442; border-color: #F86442;  color: #fff;}
+.paging-bar .page:hover,
+.tab-2 .item:hover { border-color: #F86442;}
+.paging-bar span { display: inline-block;}
+/* ------ 播放器 ------ */
+.player {}
+.player_progressbar { background: #ececec; border-radius: 0 5px 5px 0; height: 6px; margin: 9px 0 0 24px; }
+.player_playbar { height: 100%; background: #f86442; min-width: 5px; max-width: 100%;}
+.icon-dot { margin: -3px -6px 0 0;}
+.player-1 { width: 685px; height: 24px; background: url("img/common/bg_player.png") no-repeat; padding: 3px 12px 3px 3px;}
+
+/* ------ 头部 ------ */
+.header { line-height: 50px; color: #fff; background: #f86442 url("img/common/bg_header.jpg") no-repeat center;}
+.header-bottom { background: #fff; height: 4px;}
+.header a { padding: 0 15px; text-align: center;}
+.logo { font-size: 14px;}
+.logo a{ padding: 0;}
+.header .item:hover { color: #f86442; background-color: #fff; background-color: rgba(255, 255, 255, 0.8);}
+.header .item.on { color: #f86442; background-color: #fff;}
+.u-login{ width: 255px;}
+.u-login .u-info { width: 130px; padding: 0 10px;}
+.u-login .u-info .pic { width: 36px; height: 36px; border-radius: 50%; margin: 0;}
+.u-login .u-info .info { padding: 5px 10px 5px 5px; height: 36px;}
+.u-login .tb { height: 100%;}
+.u-login .u-info .name { width: 70px;font-size: 12px; line-height: 1.5;}
+.msg { background: #f00; font-size: 12px; line-height: 12px; border-radius: 30px; color: #fff; padding: 1px 4px; margin-left: 5px;}
+.u-pop { background: #fff; width: 100%; z-index: 99; color: #666; margin-left: -10px; display: none;}
+.u-pop .icon-arrow5 { left: 24px; margin-top: -5px;}
+.u-pop a{ text-align: left; border-top: 1px solid #eee; line-height: 31px; padding: 0 10px;}
+.u-pop .item:first-child a{ border-top: 0;}
+.u-pop .item:hover{ color: #666; background-color: #eee;}
+.u-pop .icon-4 { margin-right: 7px; vertical-align: -4px;}
+.u-login .u-info:hover{ background-color: rgba(255, 255, 255, 0.2) ;}
+.u-info:hover .u-pop { display: block;}
+.u-info:hover .icon-arrow2 { background-position: 0 -30px;}
+/* ------ 底部 ------ */
+.footer { font-size: 12px; border-top: 1px solid #ddd; min-height: 150px;}
+.footer a{ white-space: nowrap; color: #3485ba; }
+.footer a:hover{ text-decoration: underline; }
+.footer .nav a{ border-right: 1px solid #ddd; padding-right: 10px; margin-right: 10px;}
+.footer .nav .last { border: 0; padding-right: 0;}
+.attention-us a{ margin-right: 20px;}
+.dl-app a { margin-left: 5px; }
+.copyright { color: #999; line-height: 1.5;} 
+.attention-us1 { color: #999; bottom: 0; right: 0; }
+.attention-us1 .btn { margin-right: 3px;}
+
+/* ------ 弹出层 ------ */
+.popup { position: fixed; background: #fff; z-index: 999; }
+.popup .tit{ font-size: 14px; font-weight: normal;}
+.popup .title{ font-weight: normal;}
+.popup .btn-mid { min-width: 80px;}
+.popup .btn-close { padding: 0 5px;}
+

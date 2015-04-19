@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>消息中心</title>
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/v1.css" />
+	    <script src="../../js/lib/jquery/1.7.2.js"></script>
+	    <script>	    	
+	        $(function () {	
+	            $('.tab-3 .item').click(function(){
+	            	$(this).toggleClass('on').siblings().removeClass('on');
+	            	$('.u-center-cont').children().addClass('hidden').eq($(this).index()).removeClass('hidden');
+	            });
+	            $('.tab-1 .item').click(function(){
+	            	$(this).toggleClass('on').siblings().removeClass('on');
+	            	$(this).parent(".tab").nextAll().addClass('hidden').eq($(this).index()).removeClass('hidden');
+	            });
+	        });
+	    </script>
+	</head>
+	<body>
+		<div class="page">
+			<!--s: 头部 -->
+			<!--e: 头部 -->
+		
+			<!--s: 内容 -->
+			<div class="container">
+				<div class="main bg-f">
+					<!--s: 用户信息  -->
+					<div class="u-info wrapper1 cl">
+						<!--s: 头像-->
+						<div class="pic default-img fl">
+							<img src="../../css/img/default/person_86.jpg">							
+						</div>
+						<!--e: 头像-->
+						
+						<!--s: 信息-->
+						<div class="info">
+							<p>
+								<span class="title">番茄super超人</span>
+								<span class="fz-12 mgl-5">认证主播V</span>
+							</p>
+							<p class="mgtb-10">
+								<a class="btn btn-primary btn-small" href="#"><i class="icon-4 icon-home mgr-5"></i>喜马拉雅主页</a>								
+							</p>
+						</div>
+						<!--e: 信息-->
+					</div>
+					<!--e: 用户信息  -->
+					
+					<!--s: 用户中心  -->
+					<div class="u-center">
+						<!--s: 选项卡 -->
+						<div class="tab tab-h tab-3 cl">
+							<ul class="abs">
+								<li class="item"><a href="#">我的任务</a></li>
+								<li class="item on"><a href="#">消息中心</a></li>
+								<li class="item"><a href="#">个人中心</a></li>
+							</ul>
+						</div>
+						<!--s: 选项卡 -->
+						
+						<div class="u-center-cont">	
+							<!--s: 我的任务 -->
+							<div class="my-task">																			
+								<!--s: tab -->
+								<ul class="tab tab-h tab-1 cl">
+									<li class="item on">
+										<a>全部</a>
+									</li>
+									<li class="item">
+										<a>试音中</a>
+									</li>
+									<li class="item">
+										<a>选拔中</a>
+									</li>
+									<li class="item">
+										<a>演播中</a>
+									</li>
+									<li class="item">
+										<a>已完结</a>
+									</li>
+								</ul>
+								<!--e: tab -->
+								
+								<!--s: 任务列表为空 -->
+								<div class="wrapper tc mgt-25">
+									<p>啊哦，您还没参加过任何任务，赶快点击“<span class="c04">找任务</span>”开始任务吧~</p>
+									<a class="btn btn-primary mgt-25">立刻去找任务</a>
+								</div>
+								<!--e: 任务列表为空 -->
+								
+								<!--s: 任务列表 -->
+								<div>
+									<ul class="list list-1">
+										<!--s: 招募中 -->
+										<li class="item status-enlist mgtb-20">
+											<a class="a-unl cl" href="../task_detail.html">
+												<!--s: 图片 -->
+												<div class="pic default-img fl">
+													<i class="icon-5 icon-ing abs"></i>
+													<img src="../../css/img/default/person_86.jpg">
+												</div>
+												<!--e: 图片 -->
+												
+												<!--e: 任务分成 -->
+												<div class="task-divide task-divide-1 tc fr">											
+													<div class="task-did">
+														<p><span class="num c03">30%+￥1200</span><span class="type type-1">分成+保底</span></p>
+														<p>24人参与试音</p>
+														<span class="btn btn-primary mgtb-10">查看详情</span>
+													</div>
+												</div>
+												<!--e: 任务分成 -->
+												
+												<!--s: 信息 -->
+												<div class="info">
+													<!--s: 标题 -->
+													<h2 class="tit a ellipsis">
+														诗的时光书
+													</h2>
+													<!--e: 标题 -->
+													
+													<!--s: 作者信息 -->
+													<p>
+														<span class="c01">苏樱 毛晓雯</span> 著&ensp;|&ensp;<span>2015-01-08</span>&ensp;|&ensp;<span>205,000</span>字
+													</p>
+													<!--e: 作者信息 -->
+													
+													<!--s: 简介 -->
+													<div class="intro intro-1">											
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+													</div>
+													<!--e: 简介 -->
+													
+													<!--s: 标签 -->
+													<p class="tag c02 mgt-25">
+														<span class="item"><i></i>青春</span>
+														<span class="item"><i></i>女声</span>
+														<span class="item"><i></i>单人</span>
+													</p>
+													<!--e: 标签 -->
+												</div>
+												<!--e: 信息 -->
+											</a>
+										</li>
+										<!--e: 招募中 -->
+										
+										<!--s: 审核中 -->
+										<li class="item status-check mgtb-20">
+											<a class="a-unl cl" href="#">
+												<!--s: 图片 -->
+												<div class="pic default-img fl">
+													<i class="icon-5 icon-ing abs"></i>
+													<img src="../../css/img/default/person_86.jpg">
+												</div>
+												<!--e: 图片 -->
+												
+												<!--e: 任务分成 -->
+												<div class="task-divide task-divide-1 tc fr">
+													<div class="task-did">
+														<p><span class="num c03">50%</span><span class="type type-2">分成</span></p>
+														<p>24人参与试音</p>
+														<span class="btn btn-primary mgtb-10">查看详情</span>
+													</div>
+												</div>
+												<!--e: 任务分成 -->
+												
+												<!--s: 信息 -->
+												<div class="info">
+													<!--s: 标题 -->
+													<h2 class="tit a ellipsis">
+														诗的时光书
+													</h2>
+													<!--e: 标题 -->
+													
+													<!--s: 作者信息 -->
+													<p>
+														<span class="c01">苏樱 毛晓雯</span> 著&ensp;|&ensp;<span>2015-01-08</span>&ensp;|&ensp;<span>205,000</span>字
+													</p>
+													<!--e: 作者信息 -->
+													
+													<!--s: 简介 -->
+													<div class="intro intro-1">											
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+													</div>
+													<!--e: 简介 -->
+													
+													<!--s: 标签 -->
+													<p class="tag c02 mgt-25">
+														<span class="item"><i></i>青春</span>
+														<span class="item"><i></i>女声</span>
+														<span class="item"><i></i>单人</span>
+													</p>
+													<!--e: 标签 -->
+												</div>
+												<!--e: 信息 -->
+											</a>
+										</li>
+										<!--e: 审核中 -->
+										
+										<!--s: 演播中 -->
+										<li class="item status-beam mgtb-20">
+											<a class="a-unl cl" href="#">
+												<!--s: 图片 -->
+												<div class="pic default-img fl">
+													<i class="icon-5 icon-ing abs"></i>
+													<img src="../../css/img/default/person_86.jpg">
+												</div>
+												<!--e: 图片 -->
+												
+												<!--e: 任务分成 -->
+												<div class="task-divide task-divide-1 tc fr">
+													<i class="icon-5 icon-success abs"></i>
+													<div class="task-did">
+														<p><span class="num c03">￥1200</span><span class="type type-3">一口价</span></p>
+														<p>24人参与试音</p>
+														<span class="btn btn-primary mgtb-10" onclick="window.open('upload.html');">录制专辑</span>
+													</div>
+												</div>
+												<!--e: 任务分成 -->
+												
+												<!--s: 信息 -->
+												<div class="info">
+													<!--s: 标题 -->
+													<h2 class="tit a ellipsis">
+														周末剧场】奔跑的蜗牛
+													</h2>
+													<!--e: 标题 -->
+													
+													<!--s: 作者信息 -->
+													<p>
+														<span class="c01">苏樱 毛晓雯</span> 著&ensp;|&ensp;<span>2015-01-08</span>&ensp;|&ensp;<span>205,000</span>字
+													</p>
+													<!--e: 作者信息 -->
+													
+													<!--s: 简介 -->
+													<div class="intro intro-1">											
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+													</div>
+													<!--e: 简介 -->
+													
+													<!--s: 标签 -->
+													<p class="tag c02 mgt-25">
+														<span class="item"><i></i>青春</span>
+														<span class="item"><i></i>女声</span>
+														<span class="item"><i></i>单人</span>
+													</p>
+													<!--e: 标签 -->
+												</div>
+												<!--e: 信息 -->
+											</a>
+										</li>
+										<!--e: 演播中 -->
+										
+										<!--s: 已完结 -->
+										<li class="item status-finish mgtb-20">
+											<a class="a-unl cl" href="#">
+												<!--s: 图片 -->
+												<div class="pic default-img fl">
+													<i class="icon-5 icon-ing abs"></i>
+													<img src="../../css/img/default/person_86.jpg">
+												</div>
+												<!--e: 图片 -->															
+												
+												<!--e: 任务分成 -->
+												<div class="task-divide task-divide-1 tc fr">
+													<i class="icon-5 icon-fail abs"></i>
+													<div class="task-did">
+														<p><span class="num c03">30%+￥1200</span><span class="type type-1">分成+保底</span></p>
+														<p>24人参与试音</p>
+														<span class="btn btn-primary mgtb-10" >查看详情</span>
+													</div>
+												</div>
+												<!--e: 任务分成 -->
+												
+												<!--s: 信息 -->
+												<div class="info">
+													<!--s: 标题 -->
+													<h2 class="tit a ellipsis">
+														周末剧场】奔跑的蜗牛
+													</h2>
+													<!--e: 标题 -->
+													
+													<!--s: 作者信息 -->
+													<p>
+														<span class="c01">苏樱 毛晓雯</span> 著&ensp;|&ensp;<span>2015-01-08</span>&ensp;|&ensp;<span>205,000</span>字
+													</p>
+													<!--e: 作者信息 -->
+													
+													<!--s: 简介 -->
+													<div class="intro intro-1">											
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+														《诗的时光书》中，每一篇文字各不相同：或缱绻，一如月光流淌的痕迹；或清新，散
+														发着青柠檬的香气；或悠扬，像舒伯特的小夜曲；或铿锵，给文字最有力的节奏和秩序
+														……而对理想主义的感怀，贯穿全书始终。这本书最令我珍惜的，便是两位作者通过...
+													</div>
+													<!--e: 简介 -->
+													
+													<!--s: 标签 -->
+													<p class="tag c02 mgt-25">
+														<span class="item"><i></i>青春</span>
+														<span class="item"><i></i>女声</span>
+														<span class="item"><i></i>单人</span>
+													</p>
+													<!--e: 标签 -->
+												</div>
+												<!--e: 信息 -->
+											</a>
+										</li>
+										<!--e: 已完结 -->
+									</ul>
+									
+									<!--s: 分页 -->
+									<div class="paging-bar mgtb-20 cl">
+										<div class="fr">
+											<a class="page" href="#">上一页</a>
+											<a class="page on" href="#">1</a>
+											<a class="page" href="#">2</a>
+											<a class="page" href="#">3</a>
+											<a class="page" href="#">4</a>
+											<a class="page" href="#">5</a>
+											<span>......</span>
+											<a class="page" href="#">65</a>
+											<a class="page" href="#">下一页</a>
+										</div>
+									</div>
+									<!--e: 分页 -->
+								</div>
+								<!--e: 任务列表 -->
+							</div>
+							<!--e: 我的任务 -->
+							
+							<!--s:消息中心 -->
+							<div class="msg-center hidden">									
+								<!--s: tab -->
+								<div class="tab tab-h tab-1 cl">
+									<div class="item on">
+										<a>系统消息</a>
+									</div>
+								</div>
+								<!--e: tab -->
+								
+								<!--s: 消息列表为空 -->
+								<div class="wrapper1 tc">
+									<img src="../../css/img/default/cat4.png">
+									<span class="wrapper2 txt-mid1">亲，你还没有消息哟~</span>
+								</div>
+								<!--e: 消息列表为空 -->
+								
+								<!--s: 消息列表 -->
+								<ul class="list list-3">
+									<!--s: 第1个item -->
+									<li class="item mgtb-20 cl">										
+										<!--s: 头像-->
+										<div class="pic default-img fl">
+											<span class="msg abs">NEW</span>
+											<img src="../../css/img/default/cat2.png">							
+										</div>
+										<!--e: 头像-->
+										<div class="info wrapper2">
+											<p class="mgtb-10">												
+												<span class="fz-12 c02 fr">2015年1月18日</span>
+												<span class="name">喜马</span>
+											</p>
+											<div class="mgtb-10">
+												<p class="intro intro-3">
+													hi，[用户名]。很高兴通知您，您参加的[书名]试音作品[声音名称]，经过我们喜马拉雅用户的投票筛选选中，我们邀请您参与[书
+													名]的版权有声书录制，请点击如下链接接受我们的邀请[短链接]<br />
+													这里是展开后的内容
+												</p>
+												<!--s: 更多 -->
+												<p class="more ta-r">
+													<a>展开更多 <i class="icon-4 icon-arrow3"></i></a>	
+													<a>收起 <i class="icon-4 icon-arrow4"></i></a>										
+												</p>
+												<!--e: 更多 -->
+											</div>
+										</div>
+									</li>
+									<!--e: 第1个item -->
+									<li class="item mgtb-20 cl">										
+										<!--s: 头像-->
+										<div class="pic default-img fl">
+											<img src="../../css/img/default/cat2.png">							
+										</div>
+										<!--e: 头像-->
+										<div class="info wrapper2">
+											<p class="mgtb-10">												
+												<span class="fz-12 c02 fr">2015年1月18日</span>
+												<span class="name">喜马</span>
+											</p>
+											<div class="mgtb-10">
+												<p class="intro intro-3 open">
+													hi，[用户名]。很高兴通知您，您参加的[书名]试音作品[声音名称]，经过我们喜马拉雅用户的投票筛选选中，我们邀请您参与[书
+													名]的版权有声书录制，请点击如下链接接受我们的邀请<a>[短链接]</a><br />
+													这里是展开后的内容<br />
+													这里是展开后的内容<br />
+													这里是展开后的内容
+												</p>
+												<!--s: 更多 -->
+												<p class="more ta-r">
+													<a>展开更多 <i class="icon-4 icon-arrow3"></i></a>	
+													<a>收起 <i class="icon-4 icon-arrow4"></i></a>										
+												</p>
+												<!--e: 更多 -->
+											</div>
+										</div>
+									</li>
+								</ul>
+																
+								<!--s: 分页 -->
+								<div class="paging-bar mgtb-20 cl">
+									<div class="fr">
+										<a class="page" href="#">上一页</a>
+										<a class="page on" href="#">1</a>
+										<a class="page" href="#">2</a>
+										<a class="page" href="#">3</a>
+										<a class="page" href="#">4</a>
+										<a class="page" href="#">5</a>
+										<span>......</span>
+										<a class="page" href="#">65</a>
+										<a class="page" href="#">下一页</a>
+									</div>
+								</div>
+								<!--e: 分页 -->
+								
+								<!--e: 消息列表 -->
+							</div>
+							<!--e:消息中心 -->
+							
+							<!--s:个人信息 -->
+							<div class="hidden">																
+								<!--s: tab -->
+								<ul class="tab tab-h tab-1 cl">
+									<li class="item on">
+										<a>基本信息</a>
+									</li>
+									<li class="item">
+										<a>认证信息</a>
+									</li>
+								</ul>
+								<!--e: tab -->
+								
+								<!--s: 个人信息 -->
+								<div class="u-info mgtb-20 cl">
+									<div class="pic fl">
+										<img src="../../css/img/default/person_86.jpg">	
+									</div>
+									<a class="btn btn-default btn-small fr" href="#">修改资料</a>
+									<!--s: 信息-->
+									<div class="info">
+										<p>您的账号：18621210711</p>
+										<p class="mid">您的昵称：Dylan</p>
+										<p class="mid">所在地：上海</p>
+										<p>自我描述：爱生活·爱喜马拉雅</p>
+									</div>
+									<!--e: 信息-->
+								</div>
+								<!--e: 个人信息 -->
+								
+								<!--s: 认证主播 -->
+								<div class="hidden">
+									<!--s: 主播未认证页 -->
+									<div class="tc wrapper1">
+										<img src="../../css/img/default/cat1.png">
+										<p class="cont txt-mid1 c04 mgtb-20">
+											亲，只有认证主播才能参与试音哟~<br />
+											赶快登陆喜马拉雅申请认证吧~
+										</p>
+										<a class="btn btn-primary mgtb-10" href="#">立即去认证</a>
+									</div>
+									<!--e: 主播未认证页 -->
+									
+									<!--s: 已提交认证页 -->
+									<div class="tc wrapper1">
+										<img src="../../css/img/default/cat1.png">
+										<p class="cont txt-mid1 c04 mgtb-20">
+											您已提交认证，小喜会在7-10工作日反馈认证结果哟！<br />
+											请亲耐心等待哟！
+										</p>
+									</div>
+									<!--e: 已提交认证页 -->
+									
+									<!--s: 认证失败页 -->
+									<div class="tc wrapper1">
+										<img src="../../css/img/default/cat4.png">
+										<p class="cont txt-mid1 c04 mgtb-20">
+											亲，你的认证没有通过...请重新提交认证申请吧~
+										</p>
+										<a class="btn btn-primary mgtb-10" href="#">重新认证去</a>
+									</div>
+									<!--e: 认证失败页 -->
+									
+									<!--s: 认证成功页 -->
+									<div class="tc wrapper1">
+										<img src="../../css/img/default/cat1.png">
+										<p class="cont txt-mid1 c04 mgtb-20">
+											亲，你已成功通过认证啦，赶快去参加试音吧~
+										</p>
+										<a class="btn btn-primary mgtb-10" href="#">立刻去找任务</a>
+									</div>
+									<!--e: 认证成功页 -->
+									
+								</div>
+								<!--e: 认证主播 -->
+							</div>
+							<!--e:个人信息 -->
+						</div>
+					
+					</div>
+					<!--e: 用户中心  -->
+				</div>
+			</div>
+			<!--e: 内容 -->
+		</div>
+	</body>
+</html>
