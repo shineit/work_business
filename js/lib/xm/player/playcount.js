@@ -30,8 +30,8 @@
         if(sound.noNeedCount){
             return;
         }
-        var duration = getPlayDuration(soundId);
-        var position = getOutPosition(soundId);
+        var duration = getPlayDuration(soundId)||0;
+        var position = getOutPosition(soundId)||0;
         var async = !isFinal;
         initInfo(soundId);
         //如果声音详情里包含no_need_count那么就不需要统计改声音的播放数
@@ -39,17 +39,13 @@
             return;
         }
         var data = {
-                played_secs: (position / 1000).toFixed(2),
-                duration: (duration / 1000).toFixed(2)
+                played_secs: Math.round(position / 1000),
+                duration: Math.round(duration / 1000)
             };
-        var url = playCountUrl.replace("soundId", soundId);
-        $.ajax({
-            url: url,
-            data: data,
-            timeout: 3000,
-            async: async,
-            type: "post"
-        });
+        var url = xm.config.JSONP_PATH + playCountUrl.replace("{soundId}", soundId);
+        var img = new Image();
+        img.src = url + "?played_secs=" + data.played_secs + "&duration=" + data.duration;
+        img = null; 
     }
     //获取播放时长
     function getPlayDuration(soundId){
@@ -80,15 +76,22 @@
     }
 
     //刷新、关闭浏览器时处理
-    if(window.onbeforeunload !== undefined){
-        //chrome,firefox
-        window.onbeforeunload = function () {
+    if(window.onpagehide !== undefined){
+        //ios
+        window.onpagehide = function () {
             unload();
-        }       
+        }
     }else{
-        window.onunload = function () {
-            unload();
-        }   
+        if(window.onbeforeunload !== undefined){
+            //chrome,firefox
+            window.onbeforeunload = function () {
+                unload();
+            }       
+        }else{
+            window.onunload = function () {
+                unload();
+            }   
+        }
     }
     function unload() {
         var smSound = player.getSmSound();

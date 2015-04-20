@@ -1,4 +1,5 @@
 (function($, xm){
+    var util = xm.util;
     var player = xm.player;
     var PlayState = player.PlayState;
     var $document = $(document);
@@ -10,6 +11,7 @@
         seekbar : ".player_seekbar",            //加载进度条
         playbar : ".player_playbar",            //播放进度条    
         position : ".player_position",          //播放时间点
+        duration : ".player_duration",
         wavebox : ".player_wavebox",
         nonius : ".player_nonius",
         noniusTime : ".player_nonius_time",
@@ -38,19 +40,9 @@
             }
         }
     }
-    //格式化时间
-    function getTime(nMSec, toObj) {
-        var nSec = Math.floor(nMSec / 1000), min = Math.floor(nSec / 60), hour = Math.floor(min / 60), sec = nSec - (min * 60);
-        min = min - (hour * 60);
-        return (!toObj ? (hour ? (hour + ":") : "") + ((min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec)) : {
-            'min': min,
-            'sec': sec,
-            'hour': hour
-        });
-    }
     //当前dom对象
-    function cacheCurrent($el){
-        current = {
+    function cacheCurrent($el, sound, smSound){
+        $.extend(current, {
             $el: $el,
             $btn: $el.is(seleters.btn)?$el:$el.find(seleters.btn),
             $progressbar: $el.find(seleters.progressbar),
@@ -58,16 +50,28 @@
             $seekbar: $el.find(seleters.seekbar),
             $playbar: $el.find(seleters.playbar),
             $position: $el.find(seleters.position),
+            $duration: $el.find(seleters.duration),
             $wavebox: $el.find(seleters.wavebox),
             $nonius : $el.find(seleters.nonius),
             $noniusTime : $el.find(seleters.noniusTime),
             $noniusCover : $el.find(seleters.noniusCover),
             $commentbarBtn : $el.find(seleters.commentbarBtn),
             $playCount: $el.find(seleters.playCount)
-        };
+        });
+    }
+    //刷新播放数
+    function rendPlayCount($el, sound, smSound) {
+        var $playCount = current.$playCount;
+        if($playCount.size()){
+            $playCount = $playCount.eq(0);
+            var playCount = parseInt($playCount.text(), 10) + 1;
+            var text = $playCount.text().replace(/\d*/,playCount);
+            $playCount.text(text).attr("title", playCount + "次播放");
+            sound.playCount = playCount;
+        }
     }
     //刷新播放按钮
-    function renderBtn($el, sound, smSound){
+    function rendBtn($el, sound, smSound){
         var $btn = current.$btn;
         if($btn.size()){
             if(smSound.state === PlayState.READY){
@@ -85,20 +89,18 @@
             }
         }
     }
-    //刷新播放进度
-    function rendPlaybar($el, sound, smSound) {
-        var $playbar = current.$playbar;
-        if ($playbar.size()) {
-            var p = smSound.position / sound.duration;
-            p = p>1?1:p;
-            $playbar.css("width", 100 * p + "%");
-        }
-    }
     //刷新播放位置
     function rendPostion($el, sound, smSound) {
         var $position = current.$position;
         if ($position.size()){
-            $position.text(getTime(smSound.position));
+            $position.text(util.durationToStr(smSound.position));
+        }
+    }
+    //刷新播放时长
+    function rendDuration($el, sound, smSound){
+        var $duration = current.$duration;
+        if ($duration.size()){
+            $duration.text(util.durationToStr(sound.duration));
         }
     }
     //刷新下载进度条
@@ -110,15 +112,13 @@
             $seekbar.css("width", 100 * p + "%");
         }
     }
-    //刷新播放数
-    function rendPlayCount($el, sound, smSound) {
-        var $playCount = current.$playCount;
-        if($playCount.size()){
-            $playCount = $playCount.eq(0);
-            var playCount = parseInt($playCount.text(), 10) + 1;
-            var text = $playCount.text().replace(/\d*/,playCount);
-            $playCount.text(text).attr("title", playCount + "次播放");
-            sound.playCount = playCount;
+    //刷新播放进度
+    function rendPlaybar($el, sound, smSound) {
+        var $playbar = current.$playbar;
+        if ($playbar.size()) {
+            var p = smSound.position / sound.duration;
+            p = p>1?1:p;
+            $playbar.css("width", 100 * p + "%");
         }
     }
     //获取playlist
@@ -163,13 +163,25 @@
         }
         return sound;
     }
-    //监听xmplayer事件
-    $document.on("xmplayer", function(event, type, sound, smSound){
+    //管理xmplayer事件,将扩展对象的事件处理器排在前面，使得有能力阻断基本对象的事件处理器。
+    var callbacks = [];
+    var onXmPlayer = function(callback){
+        callbacks.unshift(callback);
+    };
+    onXmPlayer(function(event, type, sound, smSound, preSound, preSmSound){
         var $el = current.$el;
         if(type === "soundChange"){
             var soundId = sound.id;
-            var $soundId = $("[sound_id=" + soundId + "]");
-            cacheCurrent($soundId);
+            var $el = $("[sound_id=" + soundId + "]");
+            cacheCurrent($el, sound, smSound);
+            current.$el.addClass("is-loading").removeClass("is-ready is-playing is-paused");
+            current.$btn.attr("title", "加载中");
+            if(preSound){
+                $el = $("[sound_id="+preSound.id+"]");
+                $el.addClass("is-ready").removeClass("is-loading is-playing is-paused");
+                var $btn = $el.is(seleters.btn)?$el:$el.find(seleters.btn);
+                $btn.attr("title", "播放");
+            }
             return;
         }
         if(type === "whileloading"){
@@ -182,16 +194,31 @@
             return;
         }
         if(type === "statechange"){
-            renderBtn($el, sound, smSound);
+            rendBtn($el, sound, smSound);
         }
         if(type === "play"){
-            rendPlayCount($soundId, sound);
+            rendPlayCount($el, sound);
         }
         if(type === "finish"){
             rendPlaybar($el, sound, {position:0});
             rendPostion($el, sound, {position:0});
         }
-    });  
+        if(type === "manifest"){
+            rendDuration($el, sound, smSound);
+            return;
+        }
+    });
+    //监听xmplayer事件
+    $document.on("xmplayer", function(event, type, sound, smSound, preSound, preSmSound){
+        for (var i = 0, len = callbacks.length; i<len; i++) {
+            var callback = callbacks[i];
+            var result = callback(event, type, sound, smSound, preSound, preSmSound);
+            if(result === false){
+                return;
+            }
+        };
+    });
+
     $.fn.xmBasePlayer = function (options) {
         this.each(function(){
             var $el = $(this);
@@ -241,4 +268,6 @@
         seleters = $.extend(seleters, options.seleters);
         setup(options);
     }
+    player.currentPlayer = current;
+    player.onXmPlayer = onXmPlayer;
 })($, xm);

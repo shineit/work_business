@@ -1,6 +1,5 @@
 (function($, xm){
     var player = xm.player;
-    var $document = $(document);
     var current = {};
     var seleters = {
         duration : ".player_duration",
@@ -62,7 +61,7 @@
     }
 
     //监听xmplayer事件
-    $document.on("xmplayer", function(event, type, sound, smSound, preSound){
+    player.onXmPlayer(function(event, type, sound, smSound, preSound){
         var $el = current.$el;
         if(type === "beforeSoundChange"){
             render($el, sound, smSound);
@@ -76,11 +75,8 @@
             }
             return;
         }
-        if(type === "manifest"){
-            renderDuration(sound.duration);
-            return;
-        }
-    });   
+    });
+
     $.fn.xmFollowerPlayer = function (options) {
         this.each(function(){
             var $el = $(this);
@@ -101,4 +97,5 @@
         seleters = $.extend(seleters, options.seleters);
         setup(options);
     }
+    player.currentFollowPlayer = current;
 })($, xm);

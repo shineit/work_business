@@ -250,7 +250,7 @@
 		'file_dialog_complete_handler' : function(numFilesSelected, numFilesQueued) {
 			myDebug(numFilesSelected, numFilesQueued);
 			mTotalNum = this.settings.file_upload_limit;
-			if (numFilesSelected >= 1 && numFilesSelected <= mTotalNum) {
+			if (numFilesSelected >= 1 && (numFilesSelected <= mTotalNum && numFilesSelected <= this.settings.file_queue_limit)) {
                 var self = this;
                 
                 
