@@ -52,6 +52,9 @@
 
 		$("#mainBtn").on('click',function() {
 			var href = $(this).attr('data-href');
+			if(href){
+				href = window.location.origin + href;
+			}
 			if(!$(this).hasClass('disabled')){
 				checkLogin(function() {window.location.href = href;});
 			}

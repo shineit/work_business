@@ -325,7 +325,7 @@
                 };
             if(_this.file_upload_limit === "1"){
                 // $('.goOnXMUploadBtn').removeClass('hidden');
-                $(".goOnXMUploadBtn").css("left","0");
+                $(".goOnXMUploadBtn").css("left","0").parent().css('height','auto');
             }
             var result = $parent.triggerHandler("beforeCancel", [callback, _this.fileProgressWrapper]);
             if ( !result) {
