@@ -16,7 +16,7 @@
 	$.xmupload.view = {
 		dialogComplete : function() {
 			// $(".goOnXMUploadBtn").addClass('hidden'); //默认隐藏继续上传按钮
-			$(".goOnXMUploadBtn").css("left","-9999px");
+			$(".goOnXMUploadBtn").css("left","-9999px").parent().css("height","0");
 			$("#xmuploadbtncontainer").css({"height":0,"overflow":'hidden'});
 			$('#progressContainer').removeClass('hidden');	
 		}
@@ -219,7 +219,7 @@
 		        return;
 		    }
 		    var progress = fileProgressUtil.createProgress(file, this.customSettings.progressTarget, this.filesSelected||{singleFile:true
-		    	, upload_limit : this.settings.file_upload_limit});
+		    	, upload_limit : this.settings.file_queue_limit});
 		    progress.setError();
 		    progress.toggleCancel(true);
 
@@ -250,7 +250,7 @@
 		'file_dialog_complete_handler' : function(numFilesSelected, numFilesQueued) {
 			myDebug(numFilesSelected, numFilesQueued);
 			mTotalNum = this.settings.file_upload_limit;
-			if (numFilesSelected >= 1 && numFilesSelected <= mTotalNum) {
+			if (numFilesSelected >= 1 && (numFilesSelected <= mTotalNum && numFilesSelected <= this.settings.file_queue_limit)) {
                 var self = this;
                 
                 
@@ -262,7 +262,7 @@
 			    for(var i = 0;i<self.file_queued_list.length;i++){
 			    	var file = self.file_queued_list[i];
 		            var progress = fileProgressUtil.createProgress({file:file,target : self.customSettings.progressTarget , singleFile :self.singleFile 
-		            		, upload_limit : this.settings.file_upload_limit});
+		            		, upload_limit : this.settings.file_queue_limit});
 				    progress.setStatus("等待上传");
 				    progress.toggleCancel(true, self);
 			    }
@@ -304,7 +304,7 @@
 			var file_temp = findFileByFileid(mFileList, file.id);
             if (!file_temp) return;
             var progress = fileProgressUtil.createProgress({file:file,target : this.customSettings.progressTarget ,
-             singleFile :this.singleFile , upload_limit : this.settings.file_upload_limit});
+             singleFile :this.singleFile , upload_limit : this.settings.file_queue_limit});
 		    progress.setStatus("开始上传");
 		    progress.uploadStart();
 		    progress.toggleCancel(true, this);
@@ -319,7 +319,7 @@
             var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
 console.log(22222);
 		    var progress = fileProgressUtil.createProgress({file:file,target : this.customSettings.progressTarget , singleFile :this.singleFile 
-		    	, upload_limit : this.settings.file_upload_limit});
+		    	, upload_limit : this.settings.file_queue_limit});
 		    console.log(11113);
 		    progress.setProgress(percent);
 		    console.log(11114);
@@ -341,7 +341,7 @@ console.log(22222);
             
 
             var progress = fileProgressUtil.createProgress({file:file,target : this.customSettings.progressTarget , singleFile :this.singleFile
-             		, upload_limit : this.settings.file_upload_limit});
+             		, upload_limit : this.settings.file_queue_limit});
 		    progress.setError();
 		    progress.toggleCancel(true, this);
 
@@ -424,7 +424,7 @@ console.log(22222);
 		    }
 		    
 		    var progress = fileProgressUtil.createProgress({file:file,target : this.customSettings.progressTarget , singleFile :this.singleFile
-		    	 , upload_limit : this.settings.file_upload_limit});
+		    	 , upload_limit : this.settings.file_queue_limit});
 		    serverData = $.parseJSON(serverData);
 
 		    if(serverData.ret == 50){

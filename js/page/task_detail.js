@@ -20,12 +20,18 @@
 		$(".tab-inner ").on('click','.item',function() { //tab切换  
 			var tabId = $(this).attr("showId");
 			var downId = $(this).attr("downId");
+			var hadMore = $(this).attr("data-more");
 			$(this).addClass("on").siblings().removeClass("on");
 
 			$("#"+tabId).removeClass("hidden").siblings("[id*='tab_']").addClass("hidden");
 
 			var $textMore = $("#"+tabId).nextAll(".more");
-			console.log($("#"+tabId).is(".open"));
+
+			if(hadMore === 'true'){ //是否隐藏更多
+				$textMore.removeClass('hidden');
+			}else if(hadMore === 'false'){
+				$textMore.addClass('hidden');
+			}
 			if($("#"+tabId).is(".open")){
 				$textMore.find(".more_down").addClass("hidden").end().find(".more_up").removeClass("hidden");
 			}else{
@@ -52,6 +58,9 @@
 
 		$("#mainBtn").on('click',function() {
 			var href = $(this).attr('data-href');
+			if(href){
+				href = window.location.origin + href;
+			}
 			if(!$(this).hasClass('disabled')){
 				checkLogin(function() {window.location.href = href;});
 			}

@@ -32,6 +32,8 @@
 
 		$("#xmUploadBtn").xmupload();
 
+		$("#xmUpload2Btn").xmupload();
+
 
 		$("#submitBtn").on('click',function() {
 			var $this  = $(this);
