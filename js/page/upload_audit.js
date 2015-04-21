@@ -40,7 +40,6 @@
 			$this.text("提交中...").addClass('disabled');
 
 			var timer = setInterval(function() {
-				console.log($.xmupload.isComplateAll());
 				if($.xmupload.isComplateAll()){
 					clearInterval(timer);
 					 $("#form")[0].submit();

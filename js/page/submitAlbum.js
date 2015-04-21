@@ -3,7 +3,7 @@
 
 	$(function() {
 
-		$('#deleteAudio').on('click',function() {
+		$('.deleteAudio').on('click',function() {
 			var url = $(this).attr('data-url');
 			deleteAudio(url);
 		});

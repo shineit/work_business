@@ -17,37 +17,64 @@
 
         <h3 class="page-header">试音相关信息</h3>
 
-        <form class="form-horizontal" name="taskCreateForm" method="post" action="" ng-controller="TaskCreateController">
-            <div class="form-group has-feedback">
+        <form class="form-horizontal" name="taskCreateForm" method="post" action="" ng-controller="TaskCreateController" ng-cloak>
+            <!--作品名称-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_workName.$invalid && !taskCreateForm.entitle_workName.$pristine }">
                 <label class="col-sm-2 control-label">作品名称</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="workName" maxgblen="60" ng-model="entitle.workName" required />
+                    <input type="text" class="form-control" name="entitle_workName1" maxgblen="60" ng-model="formData['entitle.workName1']" ng-required="true" />
+
+                    <input type="text" class="form-control hide" name="entitle_workId" maxgblen="60" ng-model="formData['entitle.workId']" ng-required="true" />
+                    <input type="text" class="form-control hide" name="entitle_workName" maxgblen="60" ng-model="formData['entitle.workName']" ng-required="true" />
+
                     <span class="glyphicon glyphicon-ok form-control-feedback"
-                          ng-show="taskCreateForm.workName.$dirty && taskCreateForm.workName.$valid"></span>
-                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                          ng-show="taskCreateForm.entitle_workId.$dirty && taskCreateForm.entitle_workId.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_workName.$error">
+                        <p ng-show="taskCreateForm.entitle_workName.$error.required" class="help-block">请输入作品名称</p>
+                        <p ng-show="taskCreateForm.entitle_workName.$error.maxgblen" class="help-block">作品名称不能超过60字符</p>
+                    </div>
+
                 </div>
                 <div class="col-sm-5">
-                    <button class="btn btn-default">关联版权</button>
-                    <span class="text-muted">意关联版权：明朝那些事</span>
+                    <a class="btn btn-default" ng-click="doGetWorks($event)">关联版权</a>
+                    <span class="text-muted" ng-show="formData['entitle.workName']">已关联版权：{{formData['entitle.workName']}}</span>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--作者名-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_authorName.$invalid && !taskCreateForm.entitle_authorName.$pristine }">
                 <label class="col-sm-2 control-label">作者名</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="entitle.authorName">
+                    <input type="text" class="form-control" name="entitle_authorName" ng-model="formData['entitle.authorName']" ng-required="true" maxgblen="60" />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.entitle_authorName.$dirty && taskCreateForm.entitle_authorName.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_authorName.$error">
+                        <p ng-show="taskCreateForm.entitle_authorName.$error.required" class="help-block">请输入作者名</p>
+                        <p ng-show="taskCreateForm.entitle_authorName.$error.maxgblen" class="help-block">作者名不能超过60字符</p>
+                    </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--作者笔名-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_authorAlisa.$invalid && !taskCreateForm.entitle_authorAlisa.$pristine }">
                 <label class="col-sm-2 control-label">作者笔名</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" value="" name="entitle.authorAlisa">
+                    <input type="text" class="form-control" value="" name="entitle_authorAlisa" ng-model="formData['entitle.authorAlisa']" ng-required="true" maxgblen="60" />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.entitle_authorAlisa.$dirty && taskCreateForm.entitle_authorAlisa.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_authorAlisa.$error">
+                        <p ng-show="taskCreateForm.entitle_authorAlisa.$error.required" class="help-block">请输入作者笔名</p>
+                        <p ng-show="taskCreateForm.entitle_authorAlisa.$error.maxgblen" class="help-block">作者名不能超过60字符</p>
+                    </div>
                 </div>
             </div>
+            <!--分类-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">分类</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="entitle.categoryId">
-                        <option value="-1">请选择</option>
+                    <select class="form-control" name="entitle_categoryId" ng-model="formData['entitle.categoryId']" required>
+                        <option value="">请选择</option>
                         <option value="3">历史</option>
                         <option value="2">悬疑</option>
                         <option value="1">言情</option>
@@ -57,160 +84,246 @@
                         <option value="4">玄幻</option>
                         <option value="8">其他</option>
                     </select>
+
+                    <div ng-show="taskCreateForm.entitle_categoryId.$error">
+                        <p ng-show="taskCreateForm.entitle_categoryId.$error.required" class="help-block">请选择分类</p>
+                    </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--字数-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_totalWordCount.$invalid && !taskCreateForm.entitle_totalWordCount.$pristine }">
                 <label class="col-sm-2 control-label">字数</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="entitle.totalWordCount" value="">
+                    <input type="number" class="form-control" name="entitle_totalWordCount" ng-model="formData['entitle.totalWordCount']" required ng-maxlength="8" />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.entitle_totalWordCount.$dirty && taskCreateForm.entitle_totalWordCount.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_totalWordCount.$error">
+                        <p ng-show="taskCreateForm.entitle_totalWordCount.$error.required" class="help-block">请输入字数</p>
+                        <p ng-show="taskCreateForm.entitle_totalWordCount.$error.maxlength" class="help-block">作者名不能超过8字符</p>
+                    </div>
                 </div>
                 <div class="col-sm-5">
                     <label class="text-muted control-label">字</label>
                 </div>
             </div>
+            <!--作品简介-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">作品简介</label>
                 <div class="col-sm-5">
-                    <textarea name="entitle.workBrief" class="form-control"></textarea>
+                    <textarea name="entitle_workBrief" class="form-control" ng-model="formData['entitle.workBrief']" ng-required="true" maxlength="1000"></textarea>
+                    <div ng-show="taskCreateForm.entitle_workBrief.$error">
+                        <p ng-show="taskCreateForm.entitle_workBrief.$error.required" class="help-block">请输入作品简介</p>
+                        <p ng-show="taskCreateForm.entitle_workBrief.$error.maxlength" class="help-block">作品简介不能超过1000字符</p>
+                    </div>
                 </div>
             </div>
+            <!--演绎方式-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">演绎方式</label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <input type="radio" value="10" name="entitle.studioStyleId">单人女声
+                        <input type="radio" value="10" name="entitle_studioStyleId" ng-model="formData['entitle.studioStyleId']">单人女声
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" value="9" name="entitle.studioStyleId">单人男声
+                        <input type="radio" value="9" name="entitle_studioStyleId" ng-model="formData['entitle.studioStyleId']">单人男声
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" value="13" name="entitle.studioStyleId">多人小说剧
+                        <input type="radio" value="13" name="entitle_studioStyleId" ng-model="formData['entitle.studioStyleId']">多人小说剧
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" value="11" name="entitle.studioStyleId">男女双人
+                        <input type="radio" value="11" name="entitle_studioStyleId" ng-model="formData['entitle.studioStyleId']">男女双人
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" value="12" name="entitle.studioStyleId">多人广播剧
+                        <input type="radio" value="12" name="entitle_studioStyleId" ng-model="formData['entitle.studioStyleId']">多人广播剧
                     </label>
                 </div>
             </div>
+            <!--试音开放时间-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">试音开放时间</label>
                 <div class="col-sm-4">
-                    <div class=" input-group">
-                        <input value="2015-04-01" name="entitle.openCallStartTime" class="form-control">
+                    <div class="input-group">
+                        <input value="2015-04-01" name="entitle_openCallStartTime" class="form-control" ng-model="formData['entitle.openCallStartTime']" required datepicker-popup="{{format}}" is-open="openCallStartTimeOpened" max-date="formData['entitle.openCallEndTime']" datepicker-options="dateOptions" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCallStartTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
                         <div class="input-group-addon">至</div>
-                        <input value="2016-04-08" name="entitle.openCallEndTime" class="form-control">
+                        <input value="2016-04-08" name="entitle_openCallEndTime" class="form-control" ng-model="formData['entitle.openCallEndTime']" required datepicker-popup="{{format}}" is-open="openCallEndTimeOpened" min-date="formData['entitle.openCallStartTime']" datepicker-options="dateOptions" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCallEndTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
                     </div>
                 </div>
             </div>
+            <!--试音片段文本A-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">
                     试音片段文本A
                 </label>
                 <div class="col-sm-5">
-                    <textarea name="entitle.fileContext" class="form-control"></textarea>
+                    <textarea name="entitle_fileContext" class="form-control"></textarea>
                 </div>
                 <div class="col-sm-a">
-                    <button class="btn btn-link" type="button">新增</button>
+                    <button class="btn btn-link" ng-click="doAddFileContext()" ng-disabled="filesContext.length>4" type="button">新增</button>
                 </div>
             </div>
-            <div ng-repeat="fileContext in filesContext">
-                <div class="form-group has-feedback">
-                    <label class="col-sm-2 control-label">
-                        试音片段文本
-                    </label>
-                    <div class="col-sm-5">
-                        <textarea name="entitle.fileContext" class="form-control"></textarea>
-                    </div>
-                    <div class="col-sm-a">
-                        <button class="btn btn-link" type="button">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group has-feedback">
+            <!--试音片段文本-->
+            <div class="form-group has-feedback" ng-repeat="fileContext in filesContext">
                 <label class="col-sm-2 control-label">
-                    封面
+                    试音片段文本
                 </label>
                 <div class="col-sm-5">
-                    <button class="btn btn-default">上传文件</button>
-                    <span class="text-muted">建议上传500*500像素以上，3M以下的图片</span>
+                    <textarea name="entitle_fileContext" class="form-control"></textarea>
+                </div>
+                <div class="col-sm-a">
+                    <button class="btn btn-link" ng-click="doRemoveFileContext($index)" type="button">删除</button>
                 </div>
             </div>
+            <!--封面-->
             <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">封面</label>
+                <div class="col-sm-5">
+                    <a class="btn btn-default" ng-click="doUploadPic($event)">上传文件</a>
+                    <span class="text-muted">建议上传500*500像素以上，3M以下的图片</span>
+                    <div class="input-group">
+                        <label>明朝那些事.txt</label>
+                        <button class="btn btn-link">删除</button>
+                    </div>
+                </div>
+            </div>
+            <!--预计时长-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.expectedTotalTimeLength.$invalid && !taskCreateForm.expectedTotalTimeLength.$pristine }">
                 <label class="col-sm-2 control-label">预计时长</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" value="15小时" name="expectedTotalTimeLength" />
+                    <input type="text" class="form-control" value="15小时" name="expectedTotalTimeLength" ng-model="formData['expectedTotalTimeLength']" required maxgblen="30" />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.expectedTotalTimeLength.$dirty && taskCreateForm.expectedTotalTimeLength.$valid"></span>
+
+                    <div ng-show="taskCreateForm.expectedTotalTimeLength.$error">
+                        <p ng-show="taskCreateForm.expectedTotalTimeLength.$error.required" class="help-block">请输入预计时长</p>
+                        <p ng-show="taskCreateForm.expectedTotalTimeLength.$error.maxgblen" class="help-block">预计时长不能超过30字符</p>
+                    </div>
                 </div>
                 <div class="col-sm-5">
                     <label class="text-muted control-label">如：32.5小时</label>
                 </div>
             </div>
+            <!--授权方式-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">授权方式</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="distributionType">
-                        <option value="-1"></option>
+                    <select class="form-control" name="distributionType" ng-model="formData['distributionType']" required>
+                        <option value=""></option>
                         <option selected="selected" value="1">独家</option>
                         <option value="2">非独家</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--收益方式-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' :( taskCreateForm.prePayAmount.$invalid && !taskCreateForm.prePayAmount.$pristine) ||  (taskCreateForm.royaltyShareRatio.$invalid && !taskCreateForm.royaltyShareRatio.$pristine)}">
                 <label class="col-sm-2 control-label">收益方式</label>
                 <div class="col-sm-10">
                     <label style="padding-top:0;" class="radio-inline">
-                        <input type="radio" value="1" name="paymentOptionId">
+                        <input type="radio" value="1" name="paymentOptionId" ng-model="formData['paymentOptionId']" />
                         一口价
                     </label>
                     <label style="padding-top:0;" class="radio-inline">
-                        <input type="radio" value="2" name="paymentOptionId">
+                        <input type="radio" value="2" name="paymentOptionId" ng-model="formData['paymentOptionId']" />
                         分成
                     </label>
                     <label style="padding-top:0;" class="radio-inline">
-                        <input type="radio" checked="" value="3" name="paymentOptionId">
+                        <input type="radio" value="3" name="paymentOptionId" ng-model="formData['paymentOptionId']" />
                         保底+分成
                     </label>
                     <div style="padding-top:0;" class="form-inline radio-inline">
                         <div class="form-control-static input-group">
-                            <input type="text" value="23423" style="width:70px;" name="prePayAmount" class="form-control">
-                            <span class="input-group-addon">元 +</span>
-                            <input type="text" value="0.6" style="width:70px;" name="royaltyShareRatio" class="form-control">
-                            <span class="input-group-addon">%</span>
+                            <input type="text" style="width:70px;padding-right:0;" name="prePayAmount" class="form-control" ng-if="formData['paymentOptionId']==1 || formData['paymentOptionId']==3" required ng-model="formData['prePayAmount']" />
+                            <span class="input-group-addon" ng-if="formData['paymentOptionId']==1 || formData['paymentOptionId']==3">元</span>
+                            <input type="number" style="width:70px;padding-right:0;" name="royaltyShareRatio" class="form-control" ng-if="formData['paymentOptionId']==2 || formData['paymentOptionId']==3" required ng-model="formData['royaltyShareRatio']" range range-max="100" range-min="0" />
+                            <span class="input-group-addon" ng-if="formData['paymentOptionId']==2 || formData['paymentOptionId']==3">%</span>
                         </div>
+                    </div>
+                    <div ng-show="taskCreateForm.prePayAmount.$error">
+                        <p ng-show="taskCreateForm.prePayAmount.$error.required" class="help-block">请输入保底价</p>
+                        <!--<p ng-show="taskCreateForm.prePayAmount.$error.maxlength" class="help-block">作者名不能超过8字符</p>-->
+                    </div>
+                    <div ng-show="taskCreateForm.royaltyShareRatio.$error">
+                        <p ng-show="taskCreateForm.royaltyShareRatio.$error.required" class="help-block">请输入分成比例</p>
+                        <p ng-show="taskCreateForm.royaltyShareRatio.$error.range" class="help-block">分成比例必须在0-100之间</p>
+                        <!--<p ng-show="taskCreateForm.royaltyShareRatio.$error.maxlength" class="help-block">作者名不能超过8字符</p>-->
                     </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--更新频率-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.updateFrequency.$invalid && !taskCreateForm.updateFrequency.$pristine }">
                 <label class="col-sm-2 control-label">更新频率</label>
                 <div class="col-sm-3">
-                    <input type="text" value="1-2周" class="form-control" name="updateFrequency">
+                    <input type="text" value="1-2周" class="form-control" name="updateFrequency" ng-model="formData['updateFrequency']" required maxgblen="30">
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.updateFrequency.$dirty && taskCreateForm.updateFrequency.$valid"></span>
+
+                    <div ng-show="taskCreateForm.updateFrequency.$error">
+                        <p ng-show="taskCreateForm.updateFrequency.$error.required" class="help-block">请输入更新频率</p>
+                        <p ng-show="taskCreateForm.updateFrequency.$error.maxgblen" class="help-block">更新频率不能超过30字符</p>
+                    </div>
                 </div>
                 <div class="col-sm-5">
                     <label class="text-muted control-label">如：1~2周</label>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--章节时长-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.expectedSectionTimeLength.$invalid && !taskCreateForm.expectedSectionTimeLength.$pristine }">
                 <label class="col-sm-2 control-label">章节时长</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" value="30分钟" name="expectedSectionTimeLength">
+                    <input type="text" class="form-control" value="30分钟" name="expectedSectionTimeLength" ng-model="formData['expectedSectionTimeLength']" maxgblen="30" required />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.expectedSectionTimeLength.$dirty && taskCreateForm.expectedSectionTimeLength.$valid"></span>
+
+                    <div ng-show="taskCreateForm.expectedSectionTimeLength.$error">
+                        <p ng-show="taskCreateForm.expectedSectionTimeLength.$error.required" class="help-block">请输入章节时长</p>
+                        <p ng-show="taskCreateForm.expectedSectionTimeLength.$error.maxgblen" class="help-block">章节时长不能超过30字符</p>
+                    </div>
                 </div>
                 <div class="col-sm-5">
                     <label class="text-muted control-label">如：15~20分钟</label>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--期望完成时间（第一章）-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.theFirstSectionFinishedTime.$invalid && !taskCreateForm.theFirstSectionFinishedTime.$pristine }">
                 <label class="col-sm-2 control-label">期望完成时间（第一章）</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" value="2015-03-03" name="theFirstSectionFinishedTime">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="2015-03-03" name="theFirstSectionFinishedTime" ng-model="formData['theFirstSectionFinishedTime']" required datepicker-popup="{{format}}" is-open="theFirstSectionFinishedTimeOpened" datepicker-options="dateOptions" readonly />
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openTheFirstSectionFinishedTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+
+                    <div ng-show="taskCreateForm.theFirstSectionFinishedTime.$error">
+                        <p ng-show="taskCreateForm.theFirstSectionFinishedTime.$error.required" class="help-block">请输入期望完成时间（第一章）</p>
+                    </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--期望完成时间（全部）-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.allSectionsFinishedTime.$invalid && !taskCreateForm.allSectionsFinishedTime.$pristine }">
                 <label class="col-sm-2 control-label">期望完成时间（全部）</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" value="2015-03-18" name="allSectionsFinishedTime">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="2015-03-03" name="allSectionsFinishedTime" ng-model="formData['allSectionsFinishedTime']" required datepicker-popup="{{format}}" is-open="allSectionsFinishedTimeOpened" datepicker-options="dateOptions" readonly />
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openallSectionsFinishedTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+
+                    <div ng-show="taskCreateForm.allSectionsFinishedTime.$error">
+                        <p ng-show="taskCreateForm.allSectionsFinishedTime.$error.required" class="help-block">请输入期望完成时间（全部）</p>
+                    </div>
                 </div>
             </div>
+            <!--上传文稿-->
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">
                     上传文稿
@@ -224,23 +337,40 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--联系人-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_contactName.$invalid && !taskCreateForm.entitle_contactName.$pristine }">
                 <label class="col-sm-2 control-label">联系人</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" value="" name="entitle.contactName">
+                    <input type="text" class="form-control" value="" name="entitle_contactName" ng-model="formData['entitle.contactName']" required maxgblen="30" />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.entitle_contactName.$dirty && taskCreateForm.entitle_contactName.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_contactName.$error">
+                        <p ng-show="taskCreateForm.entitle_contactName.$error.required" class="help-block">请输入联系人</p>
+                        <p ng-show="taskCreateForm.entitle_contactName.$error.maxgblen" class="help-block">联系人不能超过30字符</p>
+                    </div>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <!--联系人电话-->
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : taskCreateForm.entitle_contactPhoneNo.$invalid && !taskCreateForm.entitle_contactPhoneNo.$pristine }">
                 <label class="col-sm-2 control-label">联系人电话</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" value="" name="entitle.contactPhoneNo">
+                    <input type="tel" class="form-control" value="" name="entitle_contactPhoneNo" ng-model="formData['entitle.contactPhoneNo']" required maxlength="20">
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="taskCreateForm.entitle_contactPhoneNo.$dirty && taskCreateForm.entitle_contactPhoneNo.$valid"></span>
+
+                    <div ng-show="taskCreateForm.entitle_contactPhoneNo.$error">
+                        <p ng-show="taskCreateForm.entitle_contactPhoneNo.$error.required" class="help-block">请输入联系人电话</p>
+                        <p ng-show="taskCreateForm.entitle_contactPhoneNo.$error.maxlength" class="help-block">联系人电话不能超过20字符</p>
+                    </div>
                 </div>
             </div>
+            <!--操作-->
             <div class="form-group has-feedback">
                 <div class="col-sm-5 col-sm-offset-2">
                     <div class="btn-group-sm text-center">
                         <button class="btn btn-default">驳回</button>
-                        <button class="btn btn-info">发布</button>
+                        <button class="btn btn-info" ng-disabled="taskCreateForm.$invalid">发布</button>
                     </div>
                 </div>
             </div>
@@ -255,6 +385,7 @@
     <script src="js/plugins/angular/angular-animate.js"></script>
     <script src="js/plugins/angular/angular-loadingbar.js"></script>
     <script src="js/plugins/angular/angular-messages.js"></script>
+    <script src="js/plugins/angular/angular-file-upload.js"></script>
 
     <script src="js/modules/c_module.js"></script>
     <script src="js/directives/validation.js"></script>

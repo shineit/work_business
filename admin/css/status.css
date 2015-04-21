@@ -1,0 +1,54 @@
+.breadcrumb{
+	background-color: #fff;
+	margin-bottom: 0;
+	padding-left: 0;
+}
+
+.page-header{
+	margin: 10px 0 8px;
+}
+.task-info td label{
+	margin-right: 3px;
+}
+.task-info td span{
+	margin-right: 4px;
+}
+table.task-info{
+	margin-bottom: 0;
+	vertical-align: middle;
+}
+table.audio-list,
+table.audio-list th{
+	text-align: center;
+}
+
+.current-status{
+	margin-top: 10px;
+}
+	
+/*@media all and (min-width: 780px){
+	.current-status{
+		margin-top: 10px;
+	}
+}*/
+
+table td a.action {
+	margin:  0 5px;
+}
+
+table td a.action[disabled='disabled']{
+	color:#E4E4E4;
+}
+table td a.action.highlight{
+	color:red;
+}
+
+#audit{
+	padding: 0px 10px;
+	margin:0 6px 0 6px;
+}
+
+.anchor-status{
+	color:red;
+}
+

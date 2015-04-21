@@ -38,4 +38,44 @@
             }
         };
     });
+    CSystem.c_module.directive("range", function (numberFilter) {
+        return {
+            restrict: 'EA',
+            replace: true,
+            require: '?ngModel',
+            link: function (scope, element, attrs, ctrl) {
+                if (!ctrl) return;
+
+                var max = attrs.rangeMax * 1 || 1000000000,
+                    min = attrs.rangeMin * 1 || 0;
+
+                function valid(viewValue) {
+                    viewValue *= 1;
+                    if (angular.isNumber(viewValue) && !Number.isNaN(viewValue)) {
+
+                        if (viewValue >= min && viewValue <= max) {
+                            ctrl.$setValidity('range', true);
+
+                            return viewValue;
+                        } else {
+                            ctrl.$setValidity('range', false);
+
+                            return undefined;
+                        }
+                    } else {
+                        return viewValue;
+                    }
+
+                }
+
+                ctrl.$parsers.unshift(function (viewValue) {
+                    return valid(viewValue) || 0;
+                });
+
+                ctrl.$formatters.push(function (viewValue) {
+                    return valid(viewValue) || viewValue;
+                });
+            }
+        };
+    });
 })(angular);

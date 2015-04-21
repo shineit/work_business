@@ -36,7 +36,7 @@ SWFUpload.prototype.initSWFUpload = function (settings) {
 		SWFUpload.instances[this.movieName] = this;
 
 		// Load the settings.  Load the Flash movie.
-		this.initSettings();
+		this.initSettings(settings);
 		this.loadFlash();
 		this.displayDebugInfo();
 	} catch (ex) {

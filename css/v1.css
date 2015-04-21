@@ -112,7 +112,7 @@ textarea:focus,textarea.error
 
 /* -- 任务详情页 -- */
 .item.task-single:hover { outline: none;}
-.task-single .tag{ display: inline-block; margin: 9px 0 0 5px; }
+.task-single h2 + .tag{ display: inline-block; margin-top: 9px; }
 .task-single .u-info{ margin-bottom: 18px; }
 .task-single .btn.a { margin-left: 5px;}
 .task-single .tip { margin: 5px 0 -10px;}
