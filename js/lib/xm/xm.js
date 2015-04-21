@@ -10,7 +10,9 @@
 		LOGIN_PATH:"http://test.ximalaya.com/passport/login",
 		DIRECT_DTRES_ROOT: "http://upload.test.ximalaya.com/dtres",
 		UPLOAD_ROOT: "http://upload.test.ximalaya.com/dtres",
-		JSONP_PATH: "http://test.ximalaya.com"
+		JSONP_PATH: "http://test.ximalaya.com",
+		TOKEN_LABEL:'4&_token',
+		REMEMBERME_LABEL:'4&_remember_me'
 
 	};
 	
