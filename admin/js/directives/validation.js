@@ -2,7 +2,9 @@
 
     function gblen(str) { return $.trim(str).replace(/[^\x00-\xff]/ig, 'xx').length; }
 
-    CSystem.c_module.directive("maxgblen", function () {
+    var module = angular.module("validation", []);
+
+    module.directive("maxgblen", function () {
         return {
             restrict: 'EA',
             replace: true,
@@ -38,7 +40,7 @@
             }
         };
     });
-    CSystem.c_module.directive("range", function (numberFilter) {
+    module.directive("range", function (numberFilter) {
         return {
             restrict: 'EA',
             replace: true,

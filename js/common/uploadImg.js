@@ -29,7 +29,7 @@
             $el.css("position", "relative");
             
             $el.html('<div class="'+ops.textClass+'">' + text + '</div><div style="position: absolute;left:0;top:0;"><span id="imgUploadSwf"></span></div>');
-            console.log($el.length);
+            
             var flash_url = config.STATIC_PATH + '/js/lib/xm/uploader/swf/swfupload.swf';
             var settings = {
                 flash_url: flash_url,

@@ -3,9 +3,14 @@
     var player = xm.player;
     var $document = $(document);
     var playCountUrl = '/tracks/{soundId}/play';
+    var m3u8PlayCountUrl = '/radios/{soundId}/play';
     var isFinal = false;
     var infos = {};
     window.infos = infos;
+    function isM3U8(smSound){
+        var url = smSound.sound.url;
+        return url.indexOf('m3u8')!==-1;
+    }
     function initInfo(soundId){
         infos[soundId] = [];
     }
@@ -42,10 +47,23 @@
                 played_secs: Math.round(position / 1000),
                 duration: Math.round(duration / 1000)
             };
-        var url = xm.config.JSONP_PATH + playCountUrl.replace("{soundId}", soundId);
+        var countUrl = isM3U8(smSound)?m3u8PlayCountUrl:playCountUrl;
+        var url = xm.config.JSONP_PATH + countUrl.replace("{soundId}", soundId);
         var img = new Image();
-        img.src = url + "?played_secs=" + data.played_secs + "&duration=" + data.duration;
-        img = null; 
+        url += "?"
+        if(smSound.isLive){
+            data.played_secs = data.duration;
+        }else{
+            if(smSound.radioId){
+                url += "radioId=" + smSound.radioId + "&"; 
+            }
+        }
+        if(smSound.sound.playUsage){
+            url += "play_usage=" + smSound.sound.playUsage + "&"; 
+        }
+        url += "played_secs=" + data.played_secs + "&duration=" + data.duration;
+        img.src = url;
+        img = null;
     }
     //获取播放时长
     function getPlayDuration(soundId){
@@ -122,6 +140,7 @@
     player.setup = function(options){
         options = options||{};
         playCountUrl = options.playCountUrl||playCountUrl;
+        m3u8PlayCountUrl = options.m3u8PlayCountUrl||m3u8PlayCountUrl;
         setup(options);
     }
 })($, xm);

@@ -145,7 +145,6 @@
 			var value = $(this).val();
 			value = value == -1 ? "" : value;
 			$("#categoryId").val(value);
-			console.log($("#categoryId").val());
 			if(value === ""){
 				$('.categoryIdTip').html('请填写分类');
 			}else{
@@ -216,7 +215,6 @@
 				$this.text("提交中...").addClass('disabled');
 
 				var timer = setInterval(function() {
-					console.log($.xmupload.isComplateAll());
 					if($.xmupload.isComplateAll()){
 						clearInterval(timer);
 						form.submit();

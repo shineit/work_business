@@ -1,6 +1,6 @@
 ﻿+(function () {
     var moduleName = "c_module",
-        c_module = angular.module(moduleName, ["ui.bootstrap", 'ngAnimate', 'angular-loading-bar', 'ngMessages', 'angularFileUpload']);
+        c_module = angular.module(moduleName, ["ui.bootstrap", 'ngAnimate', 'angular-loading-bar', 'ngMessages', 'fileUpload', 'validation']);
 
 
     c_module.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {

@@ -1,5 +1,5 @@
 (function($, soundManager, xm){
-	var debug = false;
+	var debug = true;
 	function log(text){
 		if(debug){
 			if(console && console.log){

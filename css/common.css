@@ -220,7 +220,7 @@ img,.icon,.icon-1,.icon-2,.icon-3,.icon-4,.icon-5,.icon-6,.btn{ border: none; di
 /* ------ 播放器 ------ */
 .player {}
 .player_progressbar { background: #ececec; border-radius: 0 5px 5px 0; height: 6px; margin: 9px 0 0 24px; }
-.player_playbar { height: 100%; background: #f86442; min-width: 5px; max-width: 100%;}
+.player_playbar { height: 100%; background: #f86442; min-width: 1%; max-width: 100%;}
 .icon-dot { margin: -3px -6px 0 0;}
 .player-1 { width: 685px; height: 24px; background: url("img/common/bg_player.png") no-repeat; padding: 3px 12px 3px 3px;}
 

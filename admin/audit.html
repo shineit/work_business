@@ -23,16 +23,14 @@
 				 <tr>
                     <td><label>作品名：</label><span>张三的书</span>(<a href="#">任务详情</a>)</td>
                     <td><label>专辑名称：</label><a href="#">张三的书</a></td>
-                    <td><label>操作：</label><a href="#">任务下线</a></td>
+                    <td><label>操作：</label><a href="#" data-target="#taskOfflineDialog" data-toggle="modal">任务下线</a></td>
                 </tr>
                  <tr>
                     <td><label>作者名：</label><span>张三</span></td>
                     <td><label>主播：</label><a href="#">张三</a></td>
-                    <td>完本审核  <button id="audit" type="button" class="btn btn-default">通过审核</button><a>申请驳回</a></td>
+                    <td>完本审核  <a id="audit" type="button" class="btn btn-default btn-xs" href="#" data-toggle="modal" data-target="#acceptDialog">通过审核</a> <a data-toggle="modal" href="#" data-target="#rejectDialog">申请驳回</a></td>
                 </tr>
 			</table>
-
-
 		</div>
 
         <div class="pull-right current-status">
@@ -118,16 +116,83 @@
             </nav>
         </div>
 
-       
-
-
-
-       
-
-		
-
            
     </div>
+
+
+    <!-- 审核弹窗 start -->
+    <div id="rejectDialog" class="modal fade audit-dialog" tabindex="-1" role="dialog" aria-labelledby="驳回" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    &nbsp;
+                </div>
+
+                <div class="modal-body">
+                    <p>确认要驳回此次完本申请吗？<br/>
+                    请填写驳回原因，以便主播修改</p>
+                    <div class="form-group">
+                      <label for="message-text" class="sr-only">驳回原因</label>
+                      <textarea class="form-control" id="message-text" placeholder="驳回原因"></textarea>
+                    </div>
+
+                    <div class="modal-action" role="group">
+                        <button type="button" class="btn btn-default btn-xs" action-sure"   data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-xs" action-cancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="acceptDialog" class="modal fade audit-dialog" tabindex="-1" role="dialog" aria-labelledby="审核通过" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    &nbsp;
+                </div>
+
+                <div class="modal-body">
+                    <p>确认要通过此次完本审核吗？<br/>
+                    审核一旦通过，不可撤销哟~</p>
+                    <div class="modal-action" role="group">
+                        <button type="button" class="btn btn-default btn-xs" action-sure"   data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-xs" action-cancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <div id="taskOfflineDialog" class="modal fade audit-dialog" tabindex="-1" role="dialog" aria-labelledby="审核通过" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    &nbsp;
+                </div>
+
+                <div class="modal-body">
+                    <p>确认要将此任务下线吗？<br/>
+                    任务下线后，用户在前台将无法找到此任务</p>
+                    <div class="form-group">
+                      <label for="message-text" class="sr-only">任务下线原因</label>
+                      <textarea class="form-control" id="message-text" placeholder="下线原因"></textarea>
+                    </div>
+                    <div class="modal-action" role="group">
+                        <button type="button" class="btn btn-default btn-xs action-sure"  data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-xs action-cancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <!-- 审核弹窗 end -->
+
+
 
 
 
@@ -137,10 +202,10 @@
     <script src="js/plugins/bootstrap/bootstrap.js"></script>
     <script src="js/plugins/angular/angular.js"></script>
     <script src="js/plugins/angular/angular-ui-bootstrap.js"></script>
-    <script src="js/plugins/angular/angular-animate.js"></script>
+    <!-- <script src="js/plugins/angular/angular-animate.js"></script>
     <script src="js/plugins/angular/angular-loadingbar.js"></script>
     <script src="js/plugins/angular/angular-messages.js"></script>
-
+ -->
    
 
 

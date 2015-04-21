@@ -1,31 +1,126 @@
-(function($, soundManager){
+(function($, xm, soundManager){
+	var current = null;							
+	var sounds = {};							//缓存M3U8Sound
+	var api;									//m3u8Player的api
+	var $document = $(document);
+	var queryRadioDetailSetTimeoutId;
+
+	function isM3U8(url){
+		return /\.m3u8/i.test(url);
+	}
+	function parse(smSound){
+		var isLive = smSound.url.indexOf("cache") === -1;
+		smSound.isLive = isLive;
+		if(isLive){
+			parseLive(smSound);
+		}else{
+			parsePlayback(smSound);
+		}
+	}
+	//http://live.xmcdn.com/192.168.3.134/live/75/24.m3u8
+	function parseLive(smSound){
+		var arr = smSound.url.split("/");
+		smSound.radioId = arr[5];
+		smSound.bitrate = arr[6].split(".")[0];
+	}
+	//http://live.xmcdn.com/192.168.3.134/cache.m3u8?id=75&bitrate=24&start=15M04D15h09m00s00&end=15M04D15h09m01s00
+	function parsePlayback(smSound){
+		var queryString = smSound.url.split("?")[1];
+		var arr = queryString.split("&");
+		var params = {};
+		for(var i = 0,len = arr.length;i<len;i++){
+			var pair = arr[i];
+			var param = pair.split("=");
+			params[param[0]] = param[1];
+		}
+		smSound.radioId = params.id;
+		smSound.bitrate = params.bitrate;
+		smSound.startStr = params.start;
+		smSound.endStr = params.end;
+	}
+	function getM3U8SoundByRadioId(radioId){
+		for (var soundId in sounds) {
+			var sound = sounds[soundId];
+			if(sound.radioId == radioId){
+				return sound;
+			}
+		};
+	}
+	function getProgramDetail(smSound){
+		$.ajax({
+			url:  xm.config.LIVE_PATH + "/live-web/v1/getProgramDetail?radioId=" + smSound.radioId,
+			dataType: "jsonp",
+			success: function(data){
+				var program = data.result;
+				var start = util.strToTime(program.startTime);
+				var end = util.strToTime(program.endTime);
+				end = end > start ? end : (end + 24 * 60 * 60 * 1000);
+				var duration = end - start;
+				var date = new Date();
+				var localTime = (date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds()) * 1000;
+				smSound.program = program;
+				smSound.sound.duration = duration;
+				program.localStartTime = util.toLocalTime(program.startTime); 
+				program.localEndTime = util.toLocalTime(program.endTime);
+				program.start = start;
+				program.end = end;
+				program.localStart = util.strToTime(program.localStartTime);
+				program.localEnd = util.strToTime(program.localEndTime);
+				var step = program.localEnd - localTime;
+				$document.trigger("xmplayer", ["programChange", smSound.sound, smSound]);
+				//请求下一次;
+				step = step > 0 ? step : 5000;
+				clearTimeout(queryRadioDetailSetTimeoutId);
+				queryRadioDetailSetTimeoutId = setTimeout(function(){
+					if(current === smSound){
+						getProgramDetail(smSound);
+					}
+				}, step);
+			}
+		});
+	}
+
+	//优先使用原生m3u8播放器
 	var util = xm.util;
 	var m3u8SupportEnv = util.env.inIOS || util.env.inAndroid || util.env.inMacSafari; //默认支持m3u8
 	if(m3u8SupportEnv){
+		$document.on("xmplayer", function(event, type, sound, smSound){
+			if(type === "soundChange"){
+				if(isM3U8(smSound.sound.url)){
+		            parse(smSound);
+		            if(smSound.isLive){
+		            	current = smSound;
+		            	sounds[smSound.sound.id] = smSound;
+		            }
+				}
+	            return;
+	        }
+			if(type === "play"){
+				if(smSound.isLive){
+	        		getProgramDetail(smSound);
+				}
+	    	}
+	    });
 		return;
-	}else{
-		var name = "mymoviename";
-		var src = "http://192.168.20.47/flashls2015.4.7/bin/debug/m3u8player.swf?inline=1";
-		var attrs = {
-			width: 1,
-			height: 1
-		};
-		var params = {
-			quality:"autohigh",
-			bgcolor:"#fff",
-			align:"middle",
-			allowFullScreen:"true",
-			allowScriptAccess:"always",
-			swliveconnect:"true",
-			wmode:"window"
-		}
-		util.buildFlash(name, src, attrs, params);
 	}
+	//插入m3u8播放器
+	var name = "mymoviename";
+	var src = xm.config.M3U8PLAYER_PATH;
+	var attrs = {
+		width: 1,
+		height: 1
+	};
+	var params = {
+		quality:"autohigh",
+		bgcolor:"#fff",
+		align:"middle",
+		allowFullScreen:"true",
+		allowScriptAccess:"always",
+		swliveconnect:"true",
+		wmode:"window"
+	}
+	util.buildFlash(name, src, attrs, params);
 
-	var api;									//m3u8Player的api
-	var current = null;							//缓存当前M3U8Sound
-	var sounds = {};							//缓存M3U8Sound
-	var $document = $(document);
 
 	//覆写soundManager方法
 	var setup  = soundManager.setup;
@@ -55,9 +150,7 @@
 			return createSound(sound);
 		}
 	};
-	function isM3U8(url){
-		return /\.m3u8/i.test(url);
-	}
+
 
 	//api
 	var M3U8API = function(flashObject) {
@@ -299,61 +392,8 @@
 
 		this.backBuffer = 0;
 		this.buffer = 0;
-
-		this.parse();
+		parse(this);
 	}
-	M3U8Sound.prototype.parse = function(){
-		var isLive = this.url.indexOf("cache") === -1;
-		this.isLive = isLive;
-		if(this.isLive){
-			this.parseLive();
-		}else{
-			this.parsePlayback();
-		}
-	};
-	//http://live.xmcdn.com/192.168.3.134/live/75/24.m3u8
-	M3U8Sound.prototype.parseLive = function(){
-		var arr = this.url.split("/");
-		this.radioId = arr[5];
-		this.bitrate = arr[6].split(".")[0];
-		//this.getProgramDetail();
-	};
-	//http://live.xmcdn.com/192.168.3.134/cache.m3u8?id=75&bitrate=24&start=15M04D15h09m00s00&end=15M04D15h09m01s00
-	M3U8Sound.prototype.parsePlayback = function(){
-		var queryString = this.url.split("?")[1];
-		var arr = queryString.split("&");
-		var params = {};
-		for(var i,len = arr.length;i<len;i++){
-			var pair = arr[i];
-			var param = pair.split("=");
-			params[param[0]] = param[1];
-		}
-		this.radioId = params.id;
-		this.bitrate = params.bitrate;
-		this.startStr = params.start;
-		this.endStr = params.end;
-	};
-	M3U8Sound.prototype.getProgramDetail = function(){
-		var self = this;
-		//"http://live.ximalaya.com/live-web/v1/getProgramDetail";
-		var data = {"result":{"programId":969,"programScheduleId":5506,"programName":"New Music Express","startTime":"13:00","endTime":"14:58","playType":0,"listenBackBaseUrl":"http://live.xmcdn.com/192.168.3.134/cache.m3u8","announcerList":[],"playBackgroundPic":"http://fdfs.xmcdn.com/group6/M0A/A9/07/wKgDhFUKlSzBZGjVAABtOR0VWUM036_mobile_large.jpg"},"ret":"0000"};
-		setTimeout(function(){
-			var program = data.result;
-			self.program = program;
-			var start = util.strToTime(program.startTime);
-			var end = util.strToTime(program.endTime);
-			end = end>start?end:(end + 24 * 60 * 60 * 1000);
-			var duration = end - start;
-			self.sound.duration = duration;
-			program.localStartTime = util.toLocalTime(program.startTime); 
-			program.localEndTime = util.toLocalTime(program.endTime);
-			program.start = start;
-			program.end = end;
-			program.localStart = util.strToTime(program.localStartTime);
-			program.localEnd = util.strToTime(program.localEndTime);
-			$document.trigger("xmplayer", ["programChange", self.sound, self]);
-		},0);
-	};
 	M3U8Sound.prototype.play = function(options){
 		options = options||{};
 		if(options.position !== undefined){
@@ -364,7 +404,7 @@
 		}
 		api.load(this.url);
 		if(this.isLive){
-			this.getProgramDetail();
+			getProgramDetail(this);
 		}
 		$document.trigger("xmplayer", ["play", this.sound, this]);
 	};
@@ -393,4 +433,4 @@
         	current = smSound;
     	}
     });  
-})($, soundManager)
+})($, xm, soundManager);

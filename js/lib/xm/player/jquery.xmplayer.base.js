@@ -151,6 +151,7 @@
         var url = $el.attr("sound_url");
         var duration = $el.attr("sound_duration");
         var noNeedCount = $el.attr("sound_no_need_count");    //是否需要播放计数
+        var playUsage = $el.attr("sound_playusage");
         sound.id = soundId;
         if(url){
             sound.url = url;
@@ -160,6 +161,9 @@
         }
         if(noNeedCount&&noNeedCount!="false"){
             sound.noNeedCount = true;
+        }
+        if(playUsage){
+            sound.playUsage = playUsage;
         }
         return sound;
     }
