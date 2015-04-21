@@ -19,7 +19,7 @@ xm.jsonp= {
 	var defaultSettings = {
 		flash_url: config.STATIC_PATH + '/js/lib/xm/uploader/swf/swfupload.swf',		//swf flash路径
         upload_url: config.UPLOAD_ROOT + '/audio/upload',		//上传路径
-        post_params : {callerSource : 'copyright'}, 			//上传试音文件时需要
+        // post_params : {callerSource : 'copyright'}, 			//上传试音文件时需要
         transcoding_url: '/dtres/jsonp/uploader/queryTranscode/{id}/{timestamp}', 	//转码路径
         // transcoding_url : 'http://test.ximalaya.com/dtres/zhuanma/{id}/jindu/{timestamp}',
         file_size_limit: "200 MB",			//文件最大上传限制 单位（M）
@@ -38,6 +38,7 @@ xm.jsonp= {
         button_placeholder_id: "", //"xmuploadWarp",
         button_cursor: xmupload.CURSOR.HAND, //鼠标到flash上鼠标cursor
         button_window_mode: xmupload.WINDOW_MODE.TRANSPARENT, //透明
+        callerSource:'',//上传声音类型
         id:''
 	}
 	
@@ -83,6 +84,11 @@ xm.jsonp= {
 					
 					$.merge(handlers, defaultHandlers);
 					$.merge(handlers, additionalHandlers);
+
+					//根据上传类型 给上传接口添加参数
+					if(settings.callerSource !== ''){
+						settings.upload_url = settings.upload_url+"?callerSource="+settings.callerSource;
+					}
 
 
 					settings = $.extend({},settings,xmHandlers);
