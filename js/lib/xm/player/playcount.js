@@ -48,7 +48,7 @@
                 duration: Math.round(duration / 1000)
             };
         var countUrl = isM3U8(smSound)?m3u8PlayCountUrl:playCountUrl;
-        var url = xm.config.JSONP_PATH + countUrl.replace("{soundId}", soundId);
+        var url = xm.config.PLAY_JSONP_PATH + countUrl.replace("{soundId}", soundId);
         var img = new Image();
         url += "?"
         if(smSound.isLive){

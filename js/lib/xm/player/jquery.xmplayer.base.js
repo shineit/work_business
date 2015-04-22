@@ -64,7 +64,11 @@
         var $playCount = current.$playCount;
         if($playCount.size()){
             $playCount = $playCount.eq(0);
-            var playCount = parseInt($playCount.text(), 10) + 1;
+            var playCount = $playCount.text();
+            if(playCount.indexOf("万") > 0){
+                return;
+            }
+            playCount = parseInt(playCount, 10) + 1;
             var text = $playCount.text().replace(/\d*/,playCount);
             $playCount.text(text).attr("title", playCount + "次播放");
             sound.playCount = playCount;
