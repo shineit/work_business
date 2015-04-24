@@ -1,0 +1,121 @@
+﻿
+.breadcrumb{
+	background-color: #fff;
+	margin-bottom: 0;
+	padding-left: 0;
+}
+a:link,
+a.visited,
+a:hover,
+a:active{
+	outline: none;
+}
+/* 播放器 按钮控制 */
+.is-ready .glyphicon-play.btn-player:before {
+  content: "\e072";
+}
+.is-playing .glyphicon-play.btn-player:before {
+  content: "\e073";
+}
+
+.page-header {
+    margin: 10px 0 8px;
+}
+
+.btn-player{
+	cursor: pointer;
+}
+
+.task-info td label {
+    margin-right: 3px;
+}
+
+.task-info td span {
+    margin-right: 4px;
+}
+
+table.task-info {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+table.task-info .invitation-status{
+	color:red;
+	margin-left: 5px;
+}
+table.audio-list,
+table.audio-list th {
+    text-align: center;
+}
+
+table.audio-list .operation-rejected,
+table.audio-list .operation-invited{
+	color:red;
+}
+table.audio-list a[disabled]{
+	color:#ccc;
+	cursor: not-allowed;
+}
+
+#audit {
+    margin: 0 6px 0 6px;
+}
+
+.current-status {
+    margin-top: 10px;
+}
+
+@media all and (max-width: 780px){
+	.current-status{
+		margin-top: 0px;
+	}
+}
+
+table td a.action {
+    margin: 0 5px;
+}
+
+table td a.action[disabled='disabled'] {
+    color: #E4E4E4;
+}
+
+table td a.action.highlight {
+    color: red;
+}
+
+
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+.swfupload {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+
+.dialog-content.sy-dialog input{
+	width: 160px !important;
+} 
+
+.dialog-content textarea{
+	height: 80px;
+}

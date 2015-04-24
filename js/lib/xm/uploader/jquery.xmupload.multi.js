@@ -314,20 +314,14 @@
 		'upload_progress_handler' : function(file, bytesLoaded, bytesTotal) {
 			myDebug('upload_progress_handler');
 			var file_temp = findFileByFileid(mFileList, file.id);
-			console.log(11111);
             if (!file_temp) return;
             var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
-console.log(22222);
 		    var progress = fileProgressUtil.createProgress({file:file,target : this.customSettings.progressTarget , singleFile :this.singleFile 
 		    	, upload_limit : this.settings.file_queue_limit});
-		    console.log(11113);
 		    progress.setProgress(percent);
-		    console.log(11114);
 		    var loaded = Math.floor(bytesLoaded * 10 / (1024 * 1024)) / 10 + "M",
 		        total = Math.floor(bytesTotal * 10 / (1024 * 1024)) / 10 + "M";
-		        console.log(11115);
 		    progress.setStatus("上传进度:" + loaded + "/" + total);
-		    console.log(11116);
 		    // setTrigger.call(this,'upload_progress_handler',arguments);
 		},
 		'upload_error_handler' : function(file, errorCode, message) {

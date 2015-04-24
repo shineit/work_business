@@ -116,8 +116,9 @@
 		var uploadImg =new  xm.UploadImg({
 			$el : $("#imgUploadContainer"),
 			success : function(data, file, str_data) {
-				$("#coverPath").val(data.data[0].dfsId);
-				$('.preview img').attr("src", xm.config.FDFS_PATH + "/" +data.data[0].dfsId);
+				console.log(data);
+				$("#coverPath").val(data.data[0]["100"]);
+				$('.preview img').attr("src", xm.config.FDFS_PATH + "/" +data.data[0]["100"]);
 				$('.preview').removeClass('is-loading');
 			},
 			beforeUpload : function() {

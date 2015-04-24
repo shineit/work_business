@@ -70,8 +70,7 @@ function readCookie(name) {
             var uploadUrl = this.getSetting("upload_url");
 
             if (uploadUrl.indexOf("?") != -1) {
-            	this.setUploadURL(uploadUrl + "&fileSize=" + file.size + "&token=" + readCookie(xm.config.TOKEN_LABEL) + "&rememberMe=" + readCookie(xm.config.REMEMBERME_LABEL));
-                // this.setUploadURL(uploadUrl.substr(0, uploadUrl.indexOf("?")) + "?fileSize=" + file.size + "&token=" + readCookie(config.TOKEN_LABEL) + "&rememberMe=" + readCookie(config.REMEMBERME_LABEL));
+                this.setUploadURL(uploadUrl.substr(0, uploadUrl.indexOf("?")) + "?&fileSize=" + file.size + "&token=" + readCookie(xm.config.TOKEN_LABEL) + "&rememberMe=" + readCookie(xm.config.REMEMBERME_LABEL));
             } else {
                 this.setUploadURL(uploadUrl + "?fileSize=" + file.size + "&token=" + readCookie(xm.config.TOKEN_LABEL) + "&rememberMe=" + readCookie(xm.config.REMEMBERME_LABEL));
             }

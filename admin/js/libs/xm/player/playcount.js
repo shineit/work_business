@@ -2,13 +2,10 @@
 (function($, xm){
     var player = xm.player;
     var $document = $(document);
+    var playCountUrl = '/tracks/{soundId}/play';
     var isFinal = false;
     var infos = {};
     window.infos = infos;
-    function isM3U8(smSound){
-        var url = smSound.sound.url;
-        return url.indexOf('m3u8')!==-1;
-    }
     function initInfo(soundId){
         infos[soundId] = [];
     }
@@ -30,43 +27,29 @@
     function postInfo(smSound){
         var sound = smSound.sound; 
         var soundId = sound.id;
-        var duration = getPlayDuration(soundId)||0;
-        var position = getOutPosition(soundId)||0;
+        if(sound.noNeedCount){
+            return;
+        }
+        var duration = getPlayDuration(soundId);
+        var position = getOutPosition(soundId);
         var async = !isFinal;
         initInfo(soundId);
-        var data = {
-                played_secs: Math.round(position / 1000),
-                duration: Math.round(duration / 1000)
-            };
-        var playCountUrl = '/tracks/{id}/play';
-        var m3u8PlayCountUrl = '/radios/{id}/play';
-        var id = smSound.radioId?smSound.radioId:sound.id;    
-        var countUrl = isM3U8(smSound)?m3u8PlayCountUrl:playCountUrl;
-        var url = xm.config.PLAY_JSONP_PATH + countUrl.replace("{id}", id);
-        var img = new Image();
-        url += "?"
-        if(smSound.isLive){
-            data.played_secs = data.duration;
-        }else{
-            //如果是回播
-            if(smSound.programId){
-                url += "programid=" + sound.programId + "&"; 
-            }
+        //如果声音详情里包含no_need_count那么就不需要统计改声音的播放数
+        if(sound.noNeedCount){
+            return;
         }
-        url += "played_secs=" + data.played_secs + "&duration=" + data.duration;
-        img.src = url;
-        img = null;
-    }
-    function playcount(smSound){
-        var sound = smSound.sound; 
-        var playCountUrl = '/tracks/{id}/played';
-        var m3u8PlayCountUrl = '/radios/{id}/played';
-        var id = smSound.radioId?smSound.radioId:sound.id;
-        var countUrl = isM3U8(smSound)?m3u8PlayCountUrl:playCountUrl;
-        var url = xm.config.PLAY_JSONP_PATH + countUrl.replace("{id}", id);
-        var img = new Image();
-        img.src = url;
-        img = null;
+        var data = {
+                played_secs: (position / 1000).toFixed(2),
+                duration: (duration / 1000).toFixed(2)
+            };
+        var url = playCountUrl.replace("soundId", soundId);
+        $.ajax({
+            url: url,
+            data: data,
+            timeout: 3000,
+            async: async,
+            type: "post"
+        });
     }
     //获取播放时长
     function getPlayDuration(soundId){
@@ -97,22 +80,15 @@
     }
 
     //刷新、关闭浏览器时处理
-    if(window.onpagehide !== undefined){
-        //ios
-        window.onpagehide = function () {
+    if(window.onbeforeunload !== undefined){
+        //chrome,firefox
+        window.onbeforeunload = function () {
             unload();
-        }
+        }       
     }else{
-        if(window.onbeforeunload !== undefined){
-            //chrome,firefox
-            window.onbeforeunload = function () {
-                unload();
-            }       
-        }else{
-            window.onunload = function () {
-                unload();
-            }   
-        }
+        window.onunload = function () {
+            unload();
+        }   
     }
     function unload() {
         var smSound = player.getSmSound();
@@ -134,18 +110,15 @@
         if(type==="statechange"){
             putInfo(soundId, time, smSound.state, smSound.position);
         }
-        //playUsage 0:统计, 1:只统计播放次数, 2:不统计
         if(type === "stop" || type==="finish"){
-            if(smSound.sound.playUsage > 0){
-                return;
-            }
             postInfo(smSound);
         }
-        if(type === "play"){
-            if(smSound.sound.playUsage === 2){
-                return;
-            }
-            playcount(smSound);
-        }
     });
+
+    var setup = player.setup;
+    player.setup = function(options){
+        options = options||{};
+        playCountUrl = options.playCountUrl||playCountUrl;
+        setup(options);
+    }
 })($, xm);

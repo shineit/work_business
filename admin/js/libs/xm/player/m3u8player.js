@@ -1,118 +1,14 @@
-(function($, xm, soundManager){
-	var current = null;							
-	var sounds = {};							//缓存M3U8Sound
-	var api;									//m3u8Player的api
-	var $document = $(document);
-	var queryRadioDetailSetTimeoutId;
-
-	function isM3U8(url){
-		return /\.m3u8/i.test(url);
-	}
-	function parse(smSound){
-		var isLive = smSound.url.indexOf("cache") === -1;
-		smSound.isLive = isLive;
-		if(isLive){
-			parseLive(smSound);
-		}else{
-			parsePlayback(smSound);
-		}
-	}
-	//http://live.xmcdn.com/192.168.3.134/live/75/24.m3u8
-	function parseLive(smSound){
-		var arr = smSound.url.split("/");
-		smSound.radioId = arr[5];
-		smSound.bitrate = arr[6].split(".")[0];
-	}
-	//http://live.xmcdn.com/192.168.3.134/cache.m3u8?id=75&bitrate=24&start=15M04D15h09m00s00&end=15M04D15h09m01s00
-	function parsePlayback(smSound){
-		var queryString = smSound.url.split("?")[1];
-		var arr = queryString.split("&");
-		var params = {};
-		for(var i = 0,len = arr.length;i<len;i++){
-			var pair = arr[i];
-			var param = pair.split("=");
-			params[param[0]] = param[1];
-		}
-		smSound.radioId = params.id;
-		smSound.bitrate = params.bitrate;
-		smSound.startStr = params.start;
-		smSound.endStr = params.end;
-	}
-	function getProgramDetail(smSound){
-		$.ajax({
-			url:  xm.config.LIVE_PATH + "/live-web/v1/getProgramDetail?radioId=" + smSound.radioId,
-			dataType: "jsonp",
-			success: function(data){
-				var program = data.result;
-				var start = util.strToTime(program.startTime);
-				var end = util.strToTime(program.endTime);
-				end = end > start ? end : (end + 24 * 60 * 60 * 1000);
-				var duration = end - start;
-				var date = new Date();
-				var localTime = (date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds()) * 1000;
-				smSound.program = program;
-				smSound.sound.duration = duration;
-				program.localStartTime = util.toLocalTime(program.startTime); 
-				program.localEndTime = util.toLocalTime(program.endTime);
-				program.start = start;
-				program.end = end;
-				program.localStart = util.strToTime(program.localStartTime);
-				program.localEnd = util.strToTime(program.localEndTime);
-				var step = program.localEnd - localTime;
-				$document.trigger("xmplayer", ["programChange", smSound.sound, smSound]);
-				//请求下一次;
-				step = step > 0 ? step : 5000;
-				clearTimeout(queryRadioDetailSetTimeoutId);
-				queryRadioDetailSetTimeoutId = setTimeout(function(){
-					if(current === smSound){
-						getProgramDetail(smSound);
-					}
-				}, step);
-			}
-		});
-	}
-
-	//优先使用原生m3u8播放器
-	var util = xm.util;
-	var m3u8SupportEnv = util.env.inIOS || util.env.inAndroid || util.env.inMacSafari; //默认支持m3u8
-	if(m3u8SupportEnv){
-		$document.on("xmplayer", function(event, type, sound, smSound){
-			if(type === "soundChange"){
-				if(isM3U8(smSound.sound.url)){
-		            parse(smSound);
-		            if(smSound.isLive){
-		            	current = smSound;
-		            	sounds[smSound.sound.id] = smSound;
-		            }
-				}
-	            return;
-	        }
-			if(type === "play"){
-				if(smSound.isLive){
-	        		getProgramDetail(smSound);
-				}
-	    	}
-	    });
+(function($, soundManager){
+	var support = /Android|Mac OS/i; //已经支持m3u8的端
+	var isSupport = support.test(navigator.userAgent);
+	if(isSupport){
 		return;
 	}
-	//插入m3u8播放器
-	var name = "mymoviename";
-	var src = xm.config.M3U8PLAYER_PATH;
-	var attrs = {
-		width: 1,
-		height: 1
-	};
-	var params = {
-		quality:"autohigh",
-		bgcolor:"#fff",
-		align:"middle",
-		allowFullScreen:"true",
-		allowScriptAccess:"always",
-		swliveconnect:"true",
-		wmode:"window"
-	}
-	util.buildFlash(name, src, attrs, params);
 
+	var api;									//m3u8Player的api
+	var current = null;							//缓存当前M3U8Sound
+	var sounds = {};							//缓存M3U8Sound
+	var $document = $(document);
 
 	//覆写soundManager方法
 	var setup  = soundManager.setup;
@@ -142,7 +38,9 @@
 			return createSound(sound);
 		}
 	};
-
+	function isM3U8(url){
+		return /\.m3u8/i.test(url);
+	}
 
 	//api
 	var M3U8API = function(flashObject) {
@@ -241,14 +139,14 @@
 
 	window.flashlsEvents = {
 		onHLSReady: function(instanceId) {
-			console.log("onHLSReady()");
+			console.log("1111 onHLSReady()");
 			api = new M3U8API(getFlashMovieObject(instanceId));
 			api.setMaxBufferLength(14);
 			isReady = true;
     		onHLSReady();
 		},
 		onComplete: function(instanceId) {
-			console.log("onComplete()");
+			console.log("1111 onComplete()");
 			current.sound.lastPosition = 0;
 			//先statechange,再finish
 			setTimeout(function(){
@@ -256,38 +154,33 @@
 			}, 0)
   		},
   		onError: function(instanceId, code, url, message) {
-		    console.log("onError()");
-		    console.log(code);
-		    console.log(url);
-		    console.log(message);
+		    //console.log("1111 onError()");
 		},
   		onManifest: function(instanceId, duration, loadmetrics) {
-			//console.log("onManifest()");
+			//console.log("1111 onManifest()");
 			var position = (current.sound.lastPosition/1000)||0
 			api.play(position);
 			current.setVolume(current.volume);
-			if(!current.isLive){
-				current.sound.duration = duration * 1000;
-			}
+			current.sound.duration = duration * 1000;
 			$document.trigger("xmplayer", ["manifest", current.sound, current]);
 		},
 		onAudioLevelLoaded: function(instanceId, loadmetrics) {
-			//console.log("onAudioLevelLoaded()");
+			//console.log("1111 onAudioLevelLoaded()");
 		},
 		onLevelLoaded: function(instanceId, loadmetrics) {
-			//console.log("onLevelLoaded()");
+			//console.log("1111 onLevelLoaded()");
 		},
 		onFragmentLoaded: function(instanceId, loadmetrics) {
-			//console.log("onFragmentLoaded()");
+			//console.log("1111 onFragmentLoaded()");
 		},
 		onFragmentPlaying: function(instanceId, playmetrics) {
-			//console.log("onFragmentPlaying()");
+			//console.log("1111 onFragmentPlaying()");
 		},
 		onPosition: function(instanceId, timemetrics) {
 			var duration = timemetrics.duration.toFixed(2);
 			var playlist_sliding =  timemetrics.live_sliding_main.toFixed(2);
 			var _position = timemetrics.position.toFixed(2);
-			var position = (timemetrics.live_sliding_main + timemetrics.position).toFixed(2);
+			var position = playlist_sliding + _position;
 			var backBuffer = timemetrics.backbuffer.toFixed(2);
 			var buffer = timemetrics.buffer.toFixed(2);
 			current.position = parsePosition(position);
@@ -303,7 +196,7 @@
 			}
 		},
 		onPlaybackState: function(instanceId, newState) {
-			console.log("onPlaybackState()"+newState);
+			console.log("1111 onPlaybackState()"+newState);
 			var state = 0;
 			if(newState === "IDLE"){
 				state = 0;
@@ -325,24 +218,23 @@
 			}
 		},
 		onSeekState: function(instanceId, newState) {
-			//console.log("onSeekState()");
+			//console.log("1111 onSeekState()");
 		},
 		onSwitch: function(instanceId, newLevel) {
-			//console.log("onSwitch()");
+			//console.log("1111 onSwitch()");
 		},
 		onAudioTracksListChange: function(instanceId, trackList) {
-			//console.log("onAudioTracksListChange()");
+			//console.log("1111 onAudioTracksListChange()");
 		},
 		onAudioTrackChange: function(instanceId, trackId) {
-			//console.log("onAudioTrackChange()");
+			//console.log("1111 onAudioTrackChange()");
 		}
 	};
 	function parsePosition(str){
 		var num = 0;
 		if(str){
-			str = ""+str;
 			var arr = str.split(".");
-			num = parseInt(arr[0], 10) * 1000 + parseInt(arr[1], 10);
+			num = parseInt(arr[1], 10) * 1000 + parseInt(arr[2], 10);
 		}
 		return num;
 	}
@@ -371,8 +263,6 @@
 		this.state = 0;
 		this.stateStr = "IDLE";
 		this.type = "hls";
-		this.isLive = false;
-		this.bitrate = 24;
 
 		//动态属性
 		this.buffered = false;
@@ -384,9 +274,9 @@
 
 		this.backBuffer = 0;
 		this.buffer = 0;
-		parse(this);
 	}
 	M3U8Sound.prototype.play = function(options){
+		current = this;
 		options = options||{};
 		if(options.position !== undefined){
 			this.sound.lastPosition = options.position;
@@ -395,21 +285,21 @@
 			this.volume = options.volume;
 		}
 		api.load(this.url);
-		if(this.isLive){
-			getProgramDetail(this);
-		}
-		$document.trigger("xmplayer", ["play", this.sound, this]);
+		$document.trigger("xmplayer", ["play", current.sound, current]);
 	};
 	M3U8Sound.prototype.pause = function(){
 		api.pause();
 	};
 	M3U8Sound.prototype.resume = function(){
+		current = this;
 		api.resume();
 	};
 	M3U8Sound.prototype.stop = function(){
-		//先statechange,再stop
-		api.stop();
-		$document.trigger("xmplayer", ["stop", this.sound, this]);
+		if(current){
+			//先statechange,再stop
+			api.stop();
+			$document.trigger("xmplayer", ["stop", current.sound, current]);
+		}
 	};
 	M3U8Sound.prototype.setPosition = function(position){
 		api.seek(position/1000);
@@ -420,9 +310,4 @@
 		api.volume(volume);
 	};
 
-	$document.on("xmplayer", function(event, type, sound, smSound){
-		if(type === "soundChange"){
-        	current = smSound;
-    	}
-    });  
-})($, xm, soundManager);
+})($, soundManager)
